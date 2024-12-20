@@ -1,0 +1,85 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+// Beispiel-Datenmodelle (passt sie je nach Bedarf an)
+export interface Eatery {
+  id: number;
+  type: string;
+  name: string;
+  address: string;
+  email?: string;
+  phoneNumber?: string;
+  guestCapacity: number;
+}
+
+export interface Customer {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ApiService {
+  private apiUrl = 'http://localhost:8080/api/'; // Basis-URL für das Backend
+
+  constructor(private http: HttpClient) {}
+
+  // Eateries
+
+  // Get all eateries
+  getEateries(): Observable<Eatery[]> {
+    return this.http.get<Eatery[]>(`${this.apiUrl}eateries`);
+  }
+
+  // Get eatery by ID
+  getEatery(id: number): Observable<Eatery> {
+    return this.http.get<Eatery>(`${this.apiUrl}eateries/${id}`);
+  }
+
+  // Create new eatery
+  createEatery(eatery: Eatery): Observable<Eatery> {
+    return this.http.post<Eatery>(`${this.apiUrl}eateries`, eatery);
+  }
+
+  // Update existing eatery
+  updateEatery(id: number, eatery: Eatery): Observable<Eatery> {
+    return this.http.put<Eatery>(`${this.apiUrl}eateries/${id}`, eatery);
+  }
+
+  // Delete eatery
+  deleteEatery(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}eateries/${id}`);
+  }
+
+  // Customers
+
+  // Get all customers
+  getCustomers(): Observable<Customer[]> {
+    return this.http.get<Customer[]>(`${this.apiUrl}customers`);
+  }
+
+  // Get customer by ID
+  getCustomer(id: number): Observable<Customer> {
+    return this.http.get<Customer>(`${this.apiUrl}customers/${id}`);
+  }
+
+  // Create new customer
+  createCustomer(customer: Customer): Observable<Customer> {
+    return this.http.post<Customer>(`${this.apiUrl}customers`, customer);
+  }
+
+  // Update existing customer
+  updateCustomer(id: number, customer: Customer): Observable<Customer> {
+    return this.http.put<Customer>(`${this.apiUrl}customers/${id}`, customer);
+  }
+
+  // Delete customer
+  deleteCustomer(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}customers/${id}`);
+  }
+}
