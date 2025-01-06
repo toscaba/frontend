@@ -1,0 +1,28 @@
+<h2>Explore</h2>
+
+<div class="eatery" *ngFor="let eatery of eateries">
+    <h3>{{ eatery.name }}</h3>
+    
+    <p *ngIf="eatery.type">{{ eatery.type }}</p>
+    <p *ngIf="eatery.address">Address: {{ eatery.address }}</p>
+    <p *ngIf="eatery.phoneNumber">Phone Number: {{ eatery.phoneNumber }}</p>
+    <p *ngIf="eatery.email">Email: {{ eatery.email }}</p>
+    
+    <div class="businessDayTimes" *ngIf="eatery.businessDayTimes">
+        <p>Opening Hours:</p>
+        <table>
+            <tbody>
+                <tr class="businessDayTime" *ngFor="let businessDayTime of eatery.businessDayTimes">
+                    <td>{{ businessDayTime.openDay }}</td>
+                    <td>{{ businessDayTime.openTime }}-{{ businessDayTime.closeTime }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <p></p>
+    <button type="button" (click)="reserve()">
+        Reserve a table
+    </button>
+    <p></p>
+</div>
