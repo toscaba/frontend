@@ -22,7 +22,7 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const { firstName, lastName, phoneNumber } = this.loginForm.value;
+      const { firstName, lastName, phoneNumber, email } = this.loginForm.value;
       // TODO: connect to API create user
       // this.apiService.createUser(firstName, lastName, phoneNumber).subscribe(
       //   (data) => {
