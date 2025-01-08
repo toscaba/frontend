@@ -11,6 +11,13 @@ export interface Eatery {
   email?: string;
   phoneNumber?: string;
   guestCapacity: number;
+  businessDayTimes?: BusinessDayTime[];
+}
+
+export interface BusinessDayTime {
+  openDay: string;
+  openTime: string;
+  closeTime: string;
 }
 
 export interface Customer {
