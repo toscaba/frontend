@@ -1,0 +1,28 @@
+<div>
+    <h1>Reserve a table</h1>
+    
+    <div>
+        <mat-form-field>
+            <mat-label>Guest number</mat-label>
+            <input matInput placeholder="2" [(ngModel)]="guestNumber">
+        </mat-form-field>
+
+        <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="onSubmit()">Reserve</button>
+    </div>
+
+    <div>
+        <mat-form-field>
+            <mat-label>Reservation date</mat-label>
+            <input matInput [matDatepicker]="datepicker" [(ngModel)]="dateTime">
+            <mat-datepicker #datepicker/>
+            <mat-datepicker-toggle [for]="datepicker" matSuffix/>
+        </mat-form-field>
+          
+        <mat-form-field>
+            <mat-label>Reservation time</mat-label>
+            <input matInput [matTimepicker]="timepicker" [(ngModel)]="dateTime" [ngModelOptions]="{updateOn: 'blur'}">
+            <mat-timepicker #timepicker/>
+            <mat-timepicker-toggle [for]="timepicker" matSuffix/>
+        </mat-form-field>
+    </div>
+</div>
