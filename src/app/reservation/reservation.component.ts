@@ -7,7 +7,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { Eatery } from '../eatery/eatery';
-import { Customer } from './customer';
+import { Customer } from '../customer/customer';
 
 @Component({
   selector: 'app-reservation',
@@ -25,8 +25,8 @@ import { Customer } from './customer';
 })
 
 export class ReservationComponent implements OnInit {
-  @Input() eatery: Eatery | undefined;
-  @Input() customer: Customer | undefined;
+  eatery: Eatery | undefined;
+  customer: Customer | undefined;
   @Input() dateTime: Date | undefined;
   @Input() guestNumber: number | undefined;
 
