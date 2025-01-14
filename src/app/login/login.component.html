@@ -1,24 +1,42 @@
 <div>
   <h1>Login</h1>
   <div class="login">
-    <form (ngSubmit)="onSubmit()">
-      <div>
-        <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" required>
-      </div>
-      <div>
-        <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" required>
-      </div>
-      <div>
-        <label for="phoneNumber">Phone Number:</label>
-        <input type="text" id="phoneNumber" name="phoneNumber" required>
-      </div>
-      <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <button class="standard-button" mat-raised-button color="primary" type="submit">Login</button>
-    </form>
+    <div>
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="Your first name" [(ngModel)]="firstName">
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Your last name" [(ngModel)]="lastName">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Phone Number</mat-label>
+        <input matInput placeholder="Your phone number" [(ngModel)]="phoneNumber">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Your email address" [(ngModel)]="email">
+      </mat-form-field>
+    </div>
+    
+    <div>
+      <mat-form-field>
+        <mat-label>Payment method</mat-label>
+        <mat-select [(ngModel)]="payment">
+          <mat-option value="CASH">CASH</mat-option>
+          <mat-option value="CREDIT_CARD">CREDIT_CARD</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="onSubmit()">Login</button>
+    </div>
   </div>
 </div>
