@@ -6,8 +6,8 @@ import {MatTimepickerModule} from '@angular/material/timepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { Eatery } from '../eatery/eatery';
-import { Customer } from '../customer/customer';
+import { Eatery } from '../model/eatery';
+import { Customer } from '../model/customer';
 
 @Component({
   selector: 'app-reservation',
@@ -18,7 +18,8 @@ import { Customer } from '../customer/customer';
     MatFormFieldModule, 
     MatInputModule, 
     MatTimepickerModule, 
-    MatDatepickerModule],
+    MatDatepickerModule
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './reservation.component.html',
   styleUrl: './reservation.component.css'
@@ -39,11 +40,11 @@ export class ReservationComponent implements OnInit {
       // TODO: connect to API create reservation
       // this.apiService.createReservation(eateryID, customerID, dateTime, guestNumber).subscribe(
       //   (data) => {
-      //     // Handle successful login
+      //     // Handle successful create reservation
       //     console.log('Reservation successful:', data);
       //   },
       //   (error) => {
-      //     // Handle login failure
+      //     // Handle create failure
       //     console.error('Reservation failed:', error);
       //   }
       // );

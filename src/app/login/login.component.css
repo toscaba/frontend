@@ -24,12 +24,6 @@ html, body {
 
 /* Stile für Formularfelder */
 mat-form-field {
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-/* Überschrift im Login-Formular */
-h1 {
-  text-align: center;
-  color: #4CAF50;
-}
+    margin-right: 50px;
+    margin-top: 30px;
+  }

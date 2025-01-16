@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Eatery } from '../eatery/eatery';
+import { Eatery } from '../model/eatery';
 import { Router } from '@angular/router';
 
 @Component({
