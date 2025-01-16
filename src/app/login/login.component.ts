@@ -1,40 +1,44 @@
-import { Component } from '@angular/core';
-import { ApiService, Customer } from '../api.service';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { CommonModule } from '@angular/common'; // Importiere CommonModule
+import { Customer } from '../customer/customer';
 
 @Component({
   selector: 'app-login',
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, CommonModule], // Füge CommonModule hier hinzu
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  firstName: string = '';
-  lastName: string = '';
-  phoneNumber: string = '';
-  email: string = '';
-  payment: string = '';
+  router: Router;
+  @Input() firstName: string | undefined;
+  @Input() lastName: string | undefined;
+  @Input() phoneNumber: string | undefined;
+  @Input() email: string | undefined;
+  @Input() payment: string | undefined;
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private _router: Router) {
+    this.router = _router;
+  }
 
-  onSubmit(): void {
-    const newCustomer: Customer = {
-      id: 0, // Backend generiert die ID
+  onSubmit() {
+    if (!this.firstName || !this.lastName || !this.phoneNumber || !this.email || !this.payment) {
+      console.error('Bitte alle Felder ausfüllen.');
+      return;
+    }
+
+    console.log('Daten:', {
       firstName: this.firstName,
       lastName: this.lastName,
+      phoneNumber: this.phoneNumber,
       email: this.email,
-      phoneNumber: this.phoneNumber
-    };
-
-    this.apiService.createCustomer(newCustomer).subscribe({
-      next: (customer) => {
-        console.log('Customer created:', customer);
-        alert('Customer created successfully!');
-        this.router.navigateByUrl(`/profile/${customer.id}`);
-      },
-      error: (err) => {
-        console.error('Error creating customer:', err);
-        alert('Error creating customer. Please try again.');
-      }
+      payment: this.payment,
     });
+
+    this.router.navigateByUrl('/profile/' + 1);
   }
 }
