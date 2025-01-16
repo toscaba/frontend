@@ -21,9 +21,7 @@
         <input matInput placeholder="Your phone number" [(ngModel)]="phoneNumber">
         <mat-error *ngIf="!phoneNumber || phoneNumber == ''">Phone Number is required</mat-error>
       </mat-form-field>
-    </div>
 
-    <div>
       <mat-form-field>
         <mat-label>Email</mat-label>
         <input matInput placeholder="Your email address" [(ngModel)]="email">

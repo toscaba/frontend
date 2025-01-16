@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common'; // Importiere CommonModule
 import { ApiService } from '../services/api.service';
-import { EateryManager } from './eatery-manager';
+import { EateryManager } from '../model/eatery-manager';
 
 @Component({
   selector: 'app-eatery-manager',

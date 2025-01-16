@@ -6,6 +6,7 @@
             <mat-label>Guest number</mat-label>
             <input matInput placeholder="2" [(ngModel)]="guestNumber">
         </mat-form-field>
+        <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="onSubmit()">Reserve</button>
     </div>
 
     <div>
@@ -24,6 +25,4 @@
         </mat-form-field>
 
     </div>
-
-    <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="onSubmit()">Reserve</button>
 </div>

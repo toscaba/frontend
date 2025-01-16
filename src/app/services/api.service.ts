@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { EateryManager } from '../eatery-manager/eatery-manager';
+import { EateryManager } from '../model/eatery-manager';
 
 // Beispiel-Datenmodelle (passt sie je nach Bedarf an)
 export interface Eatery {
