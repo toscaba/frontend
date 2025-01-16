@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { EateryManager } from '../eatery-manager/eatery-manager';
 
 // Beispiel-Datenmodelle (passt sie je nach Bedarf an)
 export interface Eatery {
@@ -35,6 +36,26 @@ export class ApiService {
   private apiUrl = 'http://localhost:8080/api/'; // Basis-URL für das Backend
 
   constructor(private http: HttpClient) {}
+
+  getAllEateryManagers(): Observable<EateryManager[]> {
+    return this.http.get<EateryManager[]>(`${this.apiUrl}/managers`);
+  }
+
+  getEateryManager(id: number): Observable<EateryManager> {
+    return this.http.get<EateryManager>(`${this.apiUrl}/managers/${id}`);
+  }
+
+  createEateryManager(manager: EateryManager): Observable<EateryManager> {
+    return this.http.post<EateryManager>(`${this.apiUrl}/managers`, manager);
+  }
+
+  updateEateryManager(id: number, manager: EateryManager): Observable<EateryManager> {
+    return this.http.put<EateryManager>(`${this.apiUrl}/managers/${id}`, manager);
+  }
+
+  deleteEateryManager(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/managers/${id}`);
+  }
 
   // Login
   createUser(firstName: string, lastName: string, phoneNumber: string): Observable<any> {

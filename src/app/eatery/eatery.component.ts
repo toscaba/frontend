@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   selector: 'app-eatery',
   imports: [CommonModule],
   templateUrl: './eatery.component.html',
-  styleUrl: './eatery.component.css'
+  styleUrls: ['./eatery.component.css']
 })
 export class EateryComponent {
   router: Router;
