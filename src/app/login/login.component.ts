@@ -30,7 +30,7 @@ export class LoginComponent {
       console.error('Bitte alle Felder ausfüllen.');
       return;
     }
-    
+
     console.log('Daten:', {
       firstName: this.firstName,
       lastName: this.lastName,
@@ -52,6 +52,5 @@ export class LoginComponent {
       // const customer: Customer = {id: 1, firstName, lastName: this.lastName?, phoneNumber, email, payment: 'CASH'};
       // this.router.navigateByUrl('/profile/'+ customer.id);
       this.router.navigateByUrl('/profile/'+ 1);
-    // }
   }
 }
