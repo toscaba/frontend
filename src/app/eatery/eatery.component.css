@@ -1,0 +1,40 @@
+
+  .eatery {
+    background-color: #f9f9f9;
+    /*display: flex;*/
+    flex-direction: column; 
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%; 
+    max-width: 100%; 
+    margin: 10px 0;
+    margin-left: 50px; 
+    overflow: hidden;
+  }
+  
+  
+  h1 {
+    font-weight: bold; 
+    font-size: 25px;
+    margin-left: 67px; 
+    margin-top: 20px;
+    color: #252525;
+  }
+
+  h3 {
+    color: #252525;
+    margin-top: 0;
+  }
+
+  p {
+    font-size: 12px;
+    font-weight: normal;
+    color: gray
+  }
+
+  td {
+    font-size: 12px;
+    font-weight: bolder;
+    color: gray;
+    margin-left: 0;
+  }
