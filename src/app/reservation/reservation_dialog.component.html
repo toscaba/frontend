@@ -1,0 +1,5 @@
+<h2 mat-dialog-title *ngIf="data.isSuccess">Success</h2>
+<h2 mat-dialog-title *ngIf="!data.isSuccess">Failure</h2>
+<mat-dialog-content>
+    {{data.reservation.eateryName}}
+</mat-dialog-content>

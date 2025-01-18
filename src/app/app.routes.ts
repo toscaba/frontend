@@ -6,9 +6,10 @@ import { CustomerComponent } from './customer/customer.component';
 import { EateryManagerComponent } from './eatery-manager/eatery-manager.component';
 
 export const routes: Routes = [
-        { path: '', component: EateryComponent }, 
+        { path: '', component: EateryComponent },
+        { path: 'customer/:customerId/eateries', component: EateryComponent },
         { path: 'login', component: LoginComponent },
         { path: 'eateries/:eateryId/reservation', component: ReservationComponent },
-        { path: 'profile/:customerId', component: CustomerComponent },     
-        { path: 'managers/:id', component: EateryManagerComponent }   
+        { path: 'profile/:customerId', component: CustomerComponent },
+        { path: 'managers/:id', component: EateryManagerComponent }
 ];
