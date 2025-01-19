@@ -39,6 +39,7 @@ export interface EateryManager {
 }
 
 export interface Reservation {
+  id: number;
   customerId: number;
   eateryId: number;
   guestNumber: number;

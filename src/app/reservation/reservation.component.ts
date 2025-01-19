@@ -7,10 +7,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTimepickerModule } from '@angular/material/timepicker';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EateryService, ReservationService } from '../api.service';
-import { Customer } from '../customer/customer';
-import { Eatery } from '../eatery/eatery';
-import { Reservation } from './reservation';
+import { EateryService, ReservationService } from '../services/api.service';
+import { Customer } from '../model/customer';
+import { Eatery } from '../model/eatery';
+import { Reservation } from '../model/reservation';
 import {
   MatDialog,
   MAT_DIALOG_DATA,
@@ -38,7 +38,7 @@ export class ReservationComponent implements OnInit {
   eatery: Eatery | undefined;
   customer: Customer | undefined;
   dialog = inject(MatDialog);
-  private reservation: Reservation = { customerId: 0, eateryId: 0, eateryName: "", guestNumber: 0, reservationDateTime: "", status: "" };
+  private reservation: Reservation = { id: 0, customerId: 0, eateryId: 0, eateryName: "", guestNumber: 0, reservationDateTime: "", status: "" };
   @Input() dateTime: Date | undefined;
   @Input() guestNumber: number | undefined;
 

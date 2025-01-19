@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Eatery } from '../eatery/eatery';
+import { Eatery } from '../model/eatery';
 import { Router } from '@angular/router';
 import { EateryService } from '../services/api.service';
-import { Customer } from '../customer/customer';
+import { Customer } from '../model/customer';
 import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-eatery',
   imports: [CommonModule],
   templateUrl: './eatery.component.html',
-  styleUrls: ['./eatery.component.css']
+  styleUrl: './eatery.component.css'
 })
 export class EateryComponent implements OnInit {
   customer: Customer | undefined;

@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { CommonModule } from '@angular/common'; // Importiere CommonModule
-import { Customer } from '../customer/customer';
+import { CommonModule } from '@angular/common';
+import { Customer } from '../model/customer';
 import { AuthService } from '../services/auth.service';
-import { CustomerService } from '../api.service';
+import { CustomerService } from '../services/api.service';
 import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({

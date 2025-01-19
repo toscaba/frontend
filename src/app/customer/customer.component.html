@@ -1,6 +1,6 @@
 <h1>Your profile</h1>
 <div class="customer" *ngIf="customer">
-    <h3>{{ customer.firstName }} {{customer.lastName}}</h3>
+    <h3>{{ customer.firstName }} {{ customer.lastName }}</h3>
     <p *ngIf="customer.phoneNumber">Your phone number: {{ customer.phoneNumber }}</p>
     <p *ngIf="customer.email">Your email address: {{ customer.email }}</p>
     <p *ngIf="customer.payment">Your payment method: {{ customer.payment }}</p>
@@ -8,9 +8,16 @@
     <table>
         <tbody>
             <tr class="reservation" *ngFor="let reservation of customer.reservations">
+                <td>{{ reservation.status }}</td>
                 <td>at {{ reservation.eateryName }}</td>
                 <td>on {{ reservation.reservationDateTime }}</td>
                 <td>for {{ reservation.guestNumber }} persons</td>
+                <td>
+                    <button class="standard-button" *ngIf="reservation.status == 'CONFIRMED'" mat-raised-button color="primary" type="submit" (click)="updateReservation(reservation.id)">Update reservation</button>
+                </td>
+                <td>
+                    <button class="standard-button" *ngIf="reservation.status == 'CONFIRMED'" mat-raised-button color="primary" type="submit" (click)="cancelReservation(reservation.id)">Cancel reservation</button>
+                </td>
             </tr>
         </tbody>
     </table>
