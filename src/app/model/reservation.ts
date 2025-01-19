@@ -1,4 +1,5 @@
 export interface Reservation {
+    id: number;
     customerId: number;
     eateryId: number;
     eateryName: string;

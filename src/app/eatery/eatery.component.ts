@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Eatery } from '../eatery/eatery';
+import { Eatery } from '../model/eatery';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-eatery',
   imports: [CommonModule],
   templateUrl: './eatery.component.html',
-  styleUrls: ['./eatery.component.css']
+  styleUrl: './eatery.component.css'
 })
 export class EateryComponent {
   router: Router;

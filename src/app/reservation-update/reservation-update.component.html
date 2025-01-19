@@ -1,12 +1,12 @@
 <div>
-    <h1>Reserve a table at {{ eatery?.name }} </h1>
-    
+    <h1>Update your {{ reservation?.status }} reservation at {{ reservation?.eateryName }} on {{ reservation?.reservationDateTime }} for {{ reservation?.guestNumber }} persons</h1>
     <div>
         <mat-form-field>
             <mat-label>Guest number</mat-label>
             <input matInput placeholder="2" [(ngModel)]="guestNumber">
         </mat-form-field>
-        <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="onSubmit()">Reserve</button>
+
+        <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="onSubmit()">Update</button>
     </div>
 
     <div>
@@ -23,6 +23,6 @@
             <mat-timepicker #timepicker/>
             <mat-timepicker-toggle [for]="timepicker" matSuffix/>
         </mat-form-field>
-
     </div>
+
 </div>
