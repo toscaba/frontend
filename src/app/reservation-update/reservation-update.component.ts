@@ -6,7 +6,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatTimepickerModule} from '@angular/material/timepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { Reservation } from '../model/reservation';
+import { ReservationViewModel } from '../model/reservation';
 
 @Component({
   selector: 'app-reservation-update',
@@ -22,7 +22,7 @@ import { Reservation } from '../model/reservation';
   styleUrl: './reservation-update.component.css'
 })
 export class ReservationUpdateComponent implements OnInit {
-  reservation: Reservation | undefined;
+  reservation: ReservationViewModel | undefined;
   @Input() dateTime: Date | undefined;
   @Input() guestNumber: number | undefined;
 

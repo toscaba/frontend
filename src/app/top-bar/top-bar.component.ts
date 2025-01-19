@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { Customer } from '../model/customer';
+import { CustomerViewModel } from '../model/customer';
 import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
 import {
@@ -17,7 +17,7 @@ import {
   styleUrl: './top-bar.component.css'
 })
 export class TopBarComponent implements OnInit {
-  customer: Customer | undefined;
+  customer: CustomerViewModel | undefined;
   dialog = inject(MatDialog);
   constructor(private authService: AuthService, private router: Router) { }
 
