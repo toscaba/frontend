@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, interval, Observable } from 'rxjs';
 
 // Beispiel-Datenmodelle (passt sie je nach Bedarf an)
 export interface Eatery {
@@ -47,11 +47,25 @@ export interface Reservation {
   status: string;
 }
 
-const apiUrl: string = 'http://localhost:8080/api/'; // Basis-URL für das Backend
+// Basis-URL für das Backend
+const baseUrl: string = 'http://localhost:8080';
+const apiUrl: string = baseUrl + '/api/'; 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
+export class ConnectionService {
+
+  private backendState = new BehaviorSubject<boolean>(true);
+  currentState = this.backendState.asObservable();
+
+  constructor() { }
+
+  updateState(isBackendUp: boolean) { 
+    console.log('updating connection state');
+    this.backendState.next(isBackendUp);
+   } 
+}
+
+@Injectable({providedIn: 'root'})
 export class EateryService {
   constructor(private http: HttpClient) { }
 
@@ -81,9 +95,7 @@ export class EateryService {
   }
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class CustomerService {
 
   constructor(private http: HttpClient) { }
@@ -114,9 +126,7 @@ export class CustomerService {
   }
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class EateryManagerService {
   constructor(private http: HttpClient) { }
 
@@ -130,9 +140,7 @@ export class EateryManagerService {
   }
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class ReservationService {
   constructor(private http: HttpClient) { }
 
