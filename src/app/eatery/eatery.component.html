@@ -21,7 +21,7 @@
     </div>
     
     <p></p>
-    <button class="standard-button" type="button" (click)="reserve(eatery.id)">
+    <button class="standard-button" type="button" [disabled]="!customer" (click)="reserve(eatery.id)">
         Make reservation
     </button>
     <p></p>

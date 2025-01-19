@@ -7,5 +7,5 @@ export interface Customer {
     email: string;
     phoneNumber: string;
     reservations?: Reservation[]; 
-    payment: string;
+    payment?: string;
   }

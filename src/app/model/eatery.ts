@@ -3,9 +3,10 @@ export interface Eatery {
     name: string;
     type: string;
     address: string;
-    email: string;
-    phoneNumber: string;
+    email?: string;
+    phoneNumber?: string;
     businessDayTimes?: BusinessDayTime[];
+    guestCapacity: number;
   }
 
   export interface BusinessDayTime {
