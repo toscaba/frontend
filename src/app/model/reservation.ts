@@ -1,4 +1,4 @@
-export interface Reservation {
+export interface ReservationViewModel {
     id: number;
     customerId: number;
     eateryId: number;

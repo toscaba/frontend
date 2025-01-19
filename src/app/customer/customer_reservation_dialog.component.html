@@ -1,0 +1,13 @@
+<div *ngIf="data.isSuccess">
+    <h2 mat-dialog-title>Success</h2>
+    <mat-dialog-content>
+        Your reservation at {{data.reservation.eateryName}} has been cancelled. A confirmation message will be sent.
+    </mat-dialog-content>
+</div>
+
+<div *ngIf="!data.isSuccess">
+    <h2 mat-dialog-title>Failed</h2>
+    <mat-dialog-content>
+       Unable to cancel reservation
+    </mat-dialog-content>
+</div>
