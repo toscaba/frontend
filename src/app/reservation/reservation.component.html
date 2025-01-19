@@ -7,6 +7,7 @@
         <mat-form-field>
             <mat-label>Guest number</mat-label>
             <input matInput placeholder="2" [(ngModel)]="guestNumber" required>
+            <mat-error *ngIf="!guestNumber || guestNumber == 0">Guest number is required</mat-error>
         </mat-form-field>
         <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="onSubmit()">Reserve</button>
     </div>
@@ -15,6 +16,7 @@
         <mat-form-field>
             <mat-label>Reservation date</mat-label>
             <input matInput [matDatepicker]="datepicker" [(ngModel)]="dateTime" required>
+            <mat-error *ngIf="!dateTime">Reservation date is required</mat-error>
             <mat-datepicker #datepicker />
             <mat-datepicker-toggle [for]="datepicker" matSuffix />
         </mat-form-field>
@@ -22,6 +24,7 @@
         <mat-form-field>
             <mat-label>Reservation time</mat-label>
             <input matInput [matTimepicker]="timepicker" [(ngModel)]="dateTime" [ngModelOptions]="{updateOn: 'blur'}" required>
+            <mat-error *ngIf="!dateTime">Reservation time is required</mat-error>
             <mat-timepicker #timepicker />
             <mat-timepicker-toggle [for]="timepicker" matSuffix />
         </mat-form-field>
