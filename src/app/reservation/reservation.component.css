@@ -23,6 +23,24 @@
     margin-top: 20px;
     color: #252525;
   }
+  
+  h3 {
+    color: #252525;
+    margin-top: 0;
+  }
+
+  p {
+    font-size: 12px;
+    font-weight: normal;
+    color: gray
+  }
+
+  td {
+    font-size: 12px;
+    font-weight: bolder;
+    color: gray;
+    margin-left: 0;
+  }
 
   button {
     margin-left: 50px;

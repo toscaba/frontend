@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Eatery } from '../model/eatery';
+import { EateryViewModel } from '../model/eatery';
 import { Router } from '@angular/router';
-import { EateryService } from '../services/api.service';
-import { Customer } from '../model/customer';
+import { EateryService } from '../services/eatery.service';
+import { CustomerViewModel } from '../model/customer';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -13,8 +13,8 @@ import { AuthService } from '../services/auth.service';
   styleUrl: './eatery.component.css'
 })
 export class EateryComponent implements OnInit {
-  customer: Customer | undefined;
-  eateries: Eatery[] | undefined;
+  customer: CustomerViewModel | undefined;
+  eateries: EateryViewModel[] | undefined;
 
   constructor(private router: Router, private eateryService: EateryService, private authService: AuthService) { }
 

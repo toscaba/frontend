@@ -1,4 +1,4 @@
-export interface Eatery {
+export interface EateryViewModel {
     id: number;
     name: string;
     type: string;
