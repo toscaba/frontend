@@ -19,14 +19,12 @@ import { MatTabsModule } from '@angular/material/tabs';
 export class LoginComponent implements OnInit {
   private customer: Customer | undefined;
   enableLogin: boolean = true;
-  enableRegister: boolean = false;
 
   @Input() firstName: string | undefined;
   @Input() lastName: string | undefined;
   @Input() phoneNumber: string | undefined;
   @Input() email: string | undefined;
   @Input() payment: string | undefined;
-
   @Input() username: string | undefined;
 
   constructor(private router: Router,

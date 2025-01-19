@@ -12,13 +12,13 @@
       <div>
         <mat-form-field>
           <mat-label>First Name</mat-label>
-          <input matInput placeholder="Your first name" [(ngModel)]="firstName">
+          <input matInput placeholder="Your first name" [(ngModel)]="firstName" name="firstname">
           <mat-error *ngIf="!firstName || firstName == ''">First Name is required</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Last Name</mat-label>
-          <input matInput placeholder="Your last name" [(ngModel)]="lastName">
+          <input matInput placeholder="Your last name" [(ngModel)]="lastName" name="lastname">
           <mat-error *ngIf="!lastName || lastName == ''">Last Name is required</mat-error>
         </mat-form-field>
       </div>
@@ -26,13 +26,13 @@
       <div>
         <mat-form-field>
           <mat-label>Phone Number</mat-label>
-          <input matInput placeholder="Your phone number" [(ngModel)]="phoneNumber">
+          <input matInput placeholder="Your phone number" [(ngModel)]="phoneNumber" name="phonenumber">
           <mat-error *ngIf="!phoneNumber || phoneNumber == ''">Phone Number is required</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input matInput placeholder="Your email address" [(ngModel)]="email">
+          <input matInput placeholder="Your email address" [(ngModel)]="email" name="email">
           <mat-error *ngIf="!email || email == ''">Email is required</mat-error>
         </mat-form-field>
       </div>
@@ -40,7 +40,7 @@
       <div>
         <mat-form-field>
           <mat-label>Payment method</mat-label>
-          <mat-select [(ngModel)]="payment">
+          <mat-select [(ngModel)]="payment" name="payment">
             <mat-option value="CASH">CASH</mat-option>
             <mat-option value="CREDIT_CARD">CREDIT_CARD</mat-option>
           </mat-select>
