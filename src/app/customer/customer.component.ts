@@ -37,14 +37,4 @@ export class CustomerComponent implements OnInit {
   updateReservation(reservationId: number) {
     this.router.navigateByUrl('/reservations/' + reservationId);
   }
-
-  cancelReservation(reservationId: number) {
-    console.log("RESERVATION ID", reservationId);
-    // TODO: cancel reservation via api service
-    // this.apiService.cancelReservation(reservationId);
-  }
-
-  updateReservation(reservationId: number) {
-    this.router.navigateByUrl('/reservations/' + reservationId);
-  }
 }
