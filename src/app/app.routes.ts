@@ -8,11 +8,11 @@ import { EateryManagerComponent } from './eatery-manager/eatery-manager.componen
 
 
 export const routes: Routes = [
-        { path: '', component: EateryComponent },
+        { path: '', component: EateryComponent }, 
         { path: 'customer/:customerId/eateries', component: EateryComponent },
         { path: 'login', component: LoginComponent },
         { path: 'eateries/:eateryId/reservation', component: ReservationComponent },
-        { path: 'profile/:customerId', component: CustomerComponent },
+        { path: 'profile/:customerId', component: CustomerComponent },     
         { path: 'managers/:id', component: EateryManagerComponent },
         { path: 'reservations/:reservationId', component: ReservationUpdateComponent }
 ];
