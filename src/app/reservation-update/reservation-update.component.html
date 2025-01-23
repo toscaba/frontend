@@ -1,9 +1,9 @@
 <div>
-    <h1>Update your {{ reservation?.status }} reservation at {{ reservation?.eateryName }} on {{ reservation?.reservationDateTime }} for {{ reservation?.guestNumber }} persons</h1>
+    <h1>Update your {{ reservationViewModel.status }} reservation at {{ reservationViewModel.eateryName }} on {{ reservationViewModel.reservationDateTime }} for {{ reservationViewModel.guestNumber }} persons</h1>
     <div>
         <mat-form-field>
             <mat-label>Guest number</mat-label>
-            <input matInput placeholder="2" [(ngModel)]="guestNumber">
+            <input matInput placeholder="2" [(ngModel)]="guestNumber" required>
         </mat-form-field>
 
         <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="onSubmit()">Update</button>
@@ -12,7 +12,7 @@
     <div>
         <mat-form-field>
             <mat-label>Reservation date</mat-label>
-            <input matInput [matDatepicker]="datepicker" [(ngModel)]="dateTime">
+            <input matInput [matDatepicker]="datepicker" [(ngModel)]="dateTime" required>
             <mat-datepicker #datepicker/>
             <mat-datepicker-toggle [for]="datepicker" matSuffix/>
         </mat-form-field>

@@ -9,13 +9,13 @@
     margin-left: 50px; 
     overflow: hidden;
   }
-  
+
   mat-label {
     color: #252525;
     font-size: 12px;
     font-weight: bold;
   }
-  
+
   /* Überschrift im Login-Formular */
   h1 {
     font-weight: bold; 

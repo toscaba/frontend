@@ -7,17 +7,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTimepickerModule } from '@angular/material/timepicker';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EateryService, ReservationService } from '../services/api.service';
-import { Customer } from '../model/customer';
-import { Eatery } from '../model/eatery';
-import { Reservation } from '../model/reservation';
-import {
-  MatDialog,
-  MAT_DIALOG_DATA,
-  MatDialogTitle,
-  MatDialogContent,
-} from '@angular/material/dialog';
+import { EateryService } from '../services/eatery.service';
+import { ReservationService } from '../services/reservation.service';
+import { CustomerViewModel } from '../model/customer';
+import { EateryViewModel } from '../model/eatery';
+import { ReservationViewModel } from '../model/reservation';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent } from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
+import { CreateReservationRequest } from '../services/reservation.service';
+import { convertToString } from '../../util/date-converter';
 
 @Component({
   selector: 'app-reservation',
@@ -35,10 +33,18 @@ import { AuthService } from '../services/auth.service';
 })
 
 export class ReservationComponent implements OnInit {
-  eatery: Eatery | undefined;
-  customer: Customer | undefined;
+  eateryViewModel: EateryViewModel | undefined;
+  customerViewModel: CustomerViewModel | undefined;
   dialog = inject(MatDialog);
-  private reservation: Reservation = { id: 0, customerId: 0, eateryId: 0, eateryName: "", guestNumber: 0, reservationDateTime: "", status: "" };
+  private reservationViewModel: ReservationViewModel = { 
+    id: 0, 
+    customerId: 0, 
+    eateryId: 0, 
+    eateryName: "", 
+    guestNumber: 0, 
+    reservationDateTime: "", 
+    status: "" 
+  };
   @Input() dateTime: Date | undefined;
   @Input() guestNumber: number | undefined;
 
@@ -49,49 +55,47 @@ export class ReservationComponent implements OnInit {
     private authService: AuthService) {
   }
 
-  onSubmit() {
-    if (this.dateTime == null) {
-      return;
-    }
-
-    const year = this.dateTime.getFullYear();
-    const month = ("0" + (this.dateTime.getMonth() + 1)).slice(-2);
-    const day = ("0" + this.dateTime.getDate()).slice(-2);
-    const hours = ("0" + this.dateTime.getHours()).slice(-2);
-    const minutes = ("0" + this.dateTime.getMinutes()).slice(-2);
-    const seconds = ("0" + this.dateTime.getSeconds()).slice(-2);
-
-    this.reservation.reservationDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-    this.reservation.guestNumber = this.guestNumber ?? 0;
-    this.reservation.customerId = this.customer?.id ?? 0;
-
-    this.reservationService.createReservation(this.reservation).subscribe({
-      next: (reservation) => this.success(reservation),
-      error: (e) => this.fail(e)
-    });
-  }
-
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     const eateryIdFromRoute = Number(routeParams.get('eateryId'));
 
     this.eateryService?.getEatery(eateryIdFromRoute).subscribe(eatery => {
-      this.eatery = eatery;
-      this.reservation.eateryId = eateryIdFromRoute;
+      this.eateryViewModel = eatery;
     });
 
-    this.authService.currentCustomer.subscribe(customer => this.customer = customer);
+    this.authService.currentCustomer.subscribe(customer => this.customerViewModel = customer);
   }
 
-  success(reservation: Reservation) {
-    this.reservation = reservation;
-    this.dialog.open(Dialog, { data: { isSuccess: true, reservation: this.reservation } });
-    this.router.navigateByUrl('/profile/' + this.customer?.id);
+  onSubmit() {
+    if(!this.dateTime || !this.guestNumber) {
+      alert('Fill in required fields marked with *')
+      return;
+    }
+
+    let reservationRequest: CreateReservationRequest = {
+      customerId: this.customerViewModel?.id ?? 0,
+      eateryId: this.eateryViewModel?.id ?? 0,
+      guestNumber: this.guestNumber,
+      reservationDateTime: convertToString(this.dateTime)
+    }
+
+    this.reservationService.createReservation(reservationRequest).subscribe({
+      next: (reservation) => this.success(reservation),
+      error: (e) => this.fail(e)
+    });
+  }
+
+  success(reservation: ReservationViewModel) {
+    this.reservationViewModel = reservation;
+    this.reservationViewModel.eateryName = this.eateryViewModel?.name;
+    this.dialog.open(Dialog, { data: { isSuccess: true, reservation: this.reservationViewModel } });
+    this.router.navigateByUrl('/profile/' + this.customerViewModel?.id);
   }
 
   fail(e: any) {
     console.log(e);
-    this.dialog.open(Dialog, { data: { isSuccess: false, reservation: this.reservation } });
+    this.reservationViewModel.eateryName = this.eateryViewModel?.name;
+    this.dialog.open(Dialog, { data: { isSuccess: false, reservation: this.reservationViewModel } });
   }
 }
 

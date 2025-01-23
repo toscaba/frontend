@@ -1,11 +1,11 @@
-import { Reservation } from "./reservation";
+import { ReservationViewModel } from "./reservation";
 
-export interface Customer {
+export interface CustomerViewModel {
     id: number;
     firstName: string;
     lastName: string;
     email: string;
     phoneNumber: string;
-    reservations?: Reservation[]; 
+    reservations?: ReservationViewModel[]; 
     payment?: string;
   }

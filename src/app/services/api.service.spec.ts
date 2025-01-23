@@ -1,16 +1,27 @@
 import { TestBed } from '@angular/core/testing';
-
-import { EateryService, CustomerService, ReservationService, EateryManagerService } from './api.service';
+import { CustomerService } from './customer.service';
+import { ReservationService } from './reservation.service';
+import { EateryService } from './eatery.service';
+import { EateryManagerService } from './api.service';
 
 describe('ApiService', () => {
-  let service: EateryService;
+  let eateryservice: EateryService;
+  let customerService: CustomerService;
+  let reservationService: ReservationService;
+  let eateryService: EateryService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(EateryService);
+    eateryservice = TestBed.inject(EateryService);
+    customerService = TestBed.inject(CustomerService);
+    reservationService = TestBed.inject(ReservationService);
+    eateryService = TestBed.inject(EateryService);
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(eateryservice).toBeTruthy();
+    expect(customerService).toBeTruthy();
+    expect(reservationService).toBeTruthy();
+    expect(eateryService).toBeTruthy();
   });
 });

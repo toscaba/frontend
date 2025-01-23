@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Eatery } from '../model/eatery';
+import { EateryViewModel } from '../model/eatery';
 import { Router } from '@angular/router';
-import { ConnectionService, EateryService } from '../services/api.service';
-import { Customer } from '../model/customer';
+import { EateryService } from '../services/eatery.service';
+import { ConnectionService } from '../services/api.service';
+import { CustomerViewModel } from '../model/customer';
 import { AuthService } from '../services/auth.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -16,9 +17,10 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './eatery.component.css'
 })
 export class EateryComponent implements OnInit {
+
   isServerRunning: boolean = false;
-  customer: Customer | undefined;
-  eateries: Eatery[] | undefined;
+  customer: CustomerViewModel | undefined;
+  eateries: EateryViewModel[] | undefined;
 
   constructor(
     private router: Router,

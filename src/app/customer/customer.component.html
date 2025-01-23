@@ -1,13 +1,13 @@
 <h1>Your profile</h1>
-<div class="customer" *ngIf="customer">
-    <h3>{{ customer.firstName }} {{ customer.lastName }}</h3>
-    <p *ngIf="customer.phoneNumber">Your phone number: {{ customer.phoneNumber }}</p>
-    <p *ngIf="customer.email">Your email address: {{ customer.email }}</p>
-    <p *ngIf="customer.payment">Your payment method: {{ customer.payment }}</p>
-    <p *ngIf="customer.reservations">Your reservations:</p>
+<div class="customer" *ngIf="customerViewModel">
+    <h3>{{ customerViewModel.firstName }} {{ customerViewModel.lastName }}</h3>
+    <p *ngIf="customerViewModel.phoneNumber">Your phone number: {{ customerViewModel.phoneNumber }}</p>
+    <p *ngIf="customerViewModel.email">Your email address: {{ customerViewModel.email }}</p>
+    <p *ngIf="customerViewModel.payment">Your payment method: {{ customerViewModel.payment }}</p>
+    <p *ngIf="customerViewModel.reservations && customerViewModel.reservations.length > 0">Your reservations:</p>
     <table>
         <tbody>
-            <tr class="reservation" *ngFor="let reservation of customer.reservations">
+            <tr class="reservation" *ngFor="let reservation of customerViewModel.reservations">
                 <td>{{ reservation.status }}</td>
                 <td>at {{ reservation.eateryName }}</td>
                 <td>on {{ reservation.reservationDateTime }}</td>
