@@ -1,14 +1,18 @@
+  .eateries-container {
+    display: inline-block;
+    width: 100%;
+  }
+
   .eatery {
-    background-color: #f9f9f9;
-    /*display: flex;*/
-    flex-direction: column; 
-    border-radius: 12px;
-    padding: 20px;
-    width: 100%; 
-    max-width: 100%; 
-    margin: 10px 0;
-    margin-left: 50px; 
-    overflow: hidden;
+    display: inline-block;
+    margin-left: 70px;
+    width: 385px;
+
+    .mat-mdc-card {
+      border-radius: 5px;
+      border-color:lightgrey;
+      border-width: 1px;
+    }
   }
   
   h1 {

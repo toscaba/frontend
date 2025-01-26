@@ -28,6 +28,11 @@ export interface CustomerRequest {
     payment: string;
 }
 
+export interface LoginRequest {
+  username: string;
+  password: string;
+}
+
 const customerUrl: string = 'http://localhost:8080/api/customers'; // Customer-URL für das Backend
 
 @Injectable({
@@ -60,5 +65,10 @@ export class CustomerService {
   // Delete customer
   deleteCustomer(id: number): Observable<void> {
     return this.http.delete<void>(`${customerUrl}/${id}`);
+  }
+
+  // Login
+  login(username: string, password: string): Observable<Customer> {
+    return this.http.get<Customer>(`${customerUrl}/login`, { params: { 'username': username, 'password': password } });
   }
 }

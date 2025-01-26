@@ -15,6 +15,7 @@ import { ReservationViewModel } from '../model/reservation';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent } from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
 import { CreateReservationRequest } from '../services/reservation.service';
+import { convertToString } from '../../util/date-converter';
 
 @Component({
   selector: 'app-reservation',
@@ -54,32 +55,6 @@ export class ReservationComponent implements OnInit {
     private authService: AuthService) {
   }
 
-  onSubmit() {
-    if (this.dateTime == null) {
-      return;
-    }
-
-    const year = this.dateTime.getFullYear();
-    const month = ("0" + (this.dateTime.getMonth() + 1)).slice(-2);
-    const day = ("0" + this.dateTime.getDate()).slice(-2);
-    const hours = ("0" + this.dateTime.getHours()).slice(-2);
-    const minutes = ("0" + this.dateTime.getMinutes()).slice(-2);
-    const seconds = ("0" + this.dateTime.getSeconds()).slice(-2);
-
-    // convert date time to json format
-    let reservationRequest: CreateReservationRequest = {
-      customerId: this.customerViewModel?.id ?? 0,
-      eateryId: this.eateryViewModel?.id ?? 0,
-      guestNumber: this.guestNumber ?? 0,
-      reservationDateTime: `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
-    }
-
-    this.reservationService.createReservation(reservationRequest).subscribe({
-      next: (reservation) => this.success(reservation),
-      error: (e) => this.fail(e)
-    });
-  }
-
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     const eateryIdFromRoute = Number(routeParams.get('eateryId'));
@@ -89,6 +64,25 @@ export class ReservationComponent implements OnInit {
     });
 
     this.authService.currentCustomer.subscribe(customer => this.customerViewModel = customer);
+  }
+
+  onSubmit() {
+    if(!this.dateTime || !this.guestNumber) {
+      alert('Fill in required fields marked with *')
+      return;
+    }
+
+    let reservationRequest: CreateReservationRequest = {
+      customerId: this.customerViewModel?.id ?? 0,
+      eateryId: this.eateryViewModel?.id ?? 0,
+      guestNumber: this.guestNumber,
+      reservationDateTime: convertToString(this.dateTime)
+    }
+
+    this.reservationService.createReservation(reservationRequest).subscribe({
+      next: (reservation) => this.success(reservation),
+      error: (e) => this.fail(e)
+    });
   }
 
   success(reservation: ReservationViewModel) {
