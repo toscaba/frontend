@@ -1,28 +1,41 @@
-<h1>Explore</h1>
+<div *ngIf="!isServerRunning">
+    Server is unavailable, check your connection
+</div>
 
-<div class="eatery" *ngFor="let eatery of eateries">
-    <h3>{{ eatery.name }}</h3>
-    
-    <p *ngIf="eatery.type">{{ eatery.type }}</p>
-    <p *ngIf="eatery.address">Address: {{ eatery.address }}</p>
-    <p *ngIf="eatery.phoneNumber">Phone Number: {{ eatery.phoneNumber }}</p>
-    <p *ngIf="eatery.email">Email: {{ eatery.email }}</p>
-    
-    <div class="businessDayTimes" *ngIf="eatery.businessDayTimes">
-        <p>Opening Hours:</p>
-        <table>
-            <tbody>
-                <tr class="businessDayTime" *ngFor="let businessDayTime of eatery.businessDayTimes">
-                    <td>{{ businessDayTime.openDay }}</td>
-                    <td>{{ businessDayTime.openTime }}-{{ businessDayTime.closeTime }}</td>
-                </tr>
-            </tbody>
-        </table>
+<div *ngIf="isServerRunning">
+    <h1>Explore Current Eateries
+        <mat-divider></mat-divider>
+    </h1>
+    <div class="eateries-container">
+        <div class="eatery" *ngFor="let eatery of eateries">
+            <mat-card>
+                <mat-card-content>
+                    <h3>{{ eatery.name }}</h3>
+                    <img src="../../assets/img/{{eatery.type}}_placeholder.jpg" />
+                    <p *ngIf="eatery.type">{{ eatery.type }}</p>
+                    <p *ngIf="eatery.address">Address: {{ eatery.address }}</p>
+                    <p *ngIf="eatery.phoneNumber">Phone Number: {{ eatery.phoneNumber }}</p>
+                    <p *ngIf="eatery.email">Email: {{ eatery.email }}</p>
+            
+                    <div class="businessDayTimes" *ngIf="eatery.businessDayTimes">
+                        <p>Opening Hours:</p>
+                        <table>
+                            <tbody>
+                                <tr class="businessDayTime" *ngFor="let businessDayTime of eatery.businessDayTimes">
+                                    <td>{{ businessDayTime.openDay }}</td>
+                                    <td>{{ businessDayTime.openTime }}-{{ businessDayTime.closeTime }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            
+                    <p></p>
+                    <button class="standard-button" type="button" [disabled]="!customer" (click)="reserve(eatery.id)">
+                        Make reservation
+                    </button>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
-    
-    <p></p>
-    <button class="standard-button" type="button" [disabled]="!customer" (click)="reserve(eatery.id)">
-        Make reservation
-    </button>
-    <p></p>
 </div>

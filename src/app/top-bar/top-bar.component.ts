@@ -9,10 +9,12 @@ import {
   MatDialogTitle,
   MatDialogContent,
 } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-top-bar',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, MatMenuModule, MatButtonModule],
   templateUrl: './top-bar.component.html',
   styleUrl: './top-bar.component.css'
 })
@@ -23,6 +25,10 @@ export class TopBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.currentCustomer.subscribe(customer => this.customer = customer);
+  }
+
+  profile() {
+    this.router.navigateByUrl('/profile/' + this.customer?.id);
   }
 
   logout() {
