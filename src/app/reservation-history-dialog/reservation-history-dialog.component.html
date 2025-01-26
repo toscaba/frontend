@@ -1,1 +1,6 @@
-<p>reservation-history-dialog works!</p>
+<h2>Reservierungshistorie</h2>
+<div *ngFor="let historyItem of data.history">
+  <p>Reservierung ID: {{ historyItem.id }}</p>
+  <p>Gäste: {{ historyItem.guestNumber }}</p>
+  <p>Status: {{ historyItem.status }}</p>
+</div>

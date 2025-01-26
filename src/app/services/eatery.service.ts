@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Eatery {
+openingHours: any;
+  managerId: number;
   id: number;
   type: string;
   name: string;

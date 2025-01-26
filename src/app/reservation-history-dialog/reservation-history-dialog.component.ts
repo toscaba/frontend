@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+// Dialog-Komponente für die Reservierungshistorie
 @Component({
   selector: 'app-reservation-history-dialog',
-  imports: [],
   templateUrl: './reservation-history-dialog.component.html',
-  styleUrl: './reservation-history-dialog.component.css'
+  styleUrls: ['./reservation-history-dialog.component.css']
 })
-export class ReservationHistoryDialogComponent {
-
+export class ReservationHistoryDialog {
+  // Die Daten werden durch den Dialog übergeben
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }
