@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,6 +9,7 @@ import { CustomerViewModel } from '../model/customer';
 import { AuthService } from '../services/auth.service';
 import { CustomerService, CustomerRequest } from '../services/customer.service';
 import { MatTabsModule, MatTab, MatTabGroup } from '@angular/material/tabs';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ import { MatTabsModule, MatTab, MatTabGroup } from '@angular/material/tabs';
 export class LoginComponent implements OnInit {
   private customerViewModel: CustomerViewModel | undefined;
   enableLogin: boolean = true;
+  dialog = inject(MatDialog);
 
   @Input() firstName: string | undefined;
   @Input() lastName: string | undefined;
@@ -26,6 +28,7 @@ export class LoginComponent implements OnInit {
   @Input() email: string | undefined;
   @Input() payment: string | undefined;
   @Input() username: string | undefined;
+  @Input() password: string | undefined;
 
   constructor(private router: Router, private authService: AuthService, private customerService: CustomerService) {}
 
@@ -39,9 +42,10 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    if (this.enableLogin == true) {
-      this.customerService.getCustomer(Number(this.username)).subscribe(customer => {
-        this.authService.updateCustomer(customer);
+    if (this.enableLogin == true && this.username != undefined && this.password != undefined) {
+      this.customerService.login(this.username, this.password).subscribe({
+        next: (customer) => { this.authService.updateCustomer(customer); },
+        error: () => { this.dialog.open(Dialog); }
       });
     } else if (this.customerViewModel != undefined) {
       this.customerService.getCustomer(this.customerViewModel.id).subscribe(customer => this.authService.updateCustomer(customer));
@@ -64,4 +68,13 @@ export class LoginComponent implements OnInit {
     
     this.customerService.createCustomer(customerRequest).subscribe(customer => this.authService.updateCustomer(customer));
   }
+}
+
+@Component({
+  selector: 'app-reservation',
+  templateUrl: './dialog_login.component.html',
+  imports: [MatDialogTitle, MatDialogContent, CommonModule]
+})
+export class Dialog {
+  data = inject(MAT_DIALOG_DATA);
 }
