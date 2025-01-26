@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common'; // Importiere CommonModule
 import { EateryManagerService } from '../services/api.service';
 import { EateryManager } from '../model/eatery-manager'
 
 @Component({
   selector: 'app-eatery-manager',
-  standalone: true, 
-  imports: [CommonModule], 
+  standalone: true, // Falls es eine Standalone-Komponente ist
+  imports: [CommonModule], // Importiere das CommonModule hier
   templateUrl: './eatery-manager.component.html',
   styleUrls: ['./eatery-manager.component.css']
 })
