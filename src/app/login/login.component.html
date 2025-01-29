@@ -12,7 +12,8 @@
       <mat-error *ngIf="!password || password == ''">Password is required</mat-error>
     </mat-form-field>
 
-    <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="onLogin()">Login</button>
+    <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="onLogin()" data-testid="login-button">Login</button>
+
   </mat-tab>
 
   <mat-tab label="Register">
@@ -53,7 +54,7 @@
         </mat-select>
         <mat-error *ngIf="!payment || payment == ''">Payment method is required</mat-error>
       </mat-form-field>
-      <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="onRegister()">Register</button>
+      <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="onRegister()" data-testid="register-button">Register</button>
     </div>
   </mat-tab>
 </mat-tab-group>

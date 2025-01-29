@@ -1,0 +1,33 @@
+<div class="reservation-history">
+    <h2>Reservierungs-Historie</h2>
+    <table *ngIf="reservationHistories.length > 0" class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Reservierungs-ID</th>
+          <th>Kunden-ID</th>
+          <th>Restaurant-ID</th>
+          <th>Reservierungsdatum & Uhrzeit</th>
+          <th>Gastanzahl</th>
+          <th>Status</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let history of reservationHistories">
+          <td>{{ history.id }}</td>
+          <td>{{ history.reservationId }}</td>
+          <td>{{ history.customerId }}</td>
+          <td>{{ history.eateryId }}</td>
+          <td>{{ history.reservationDateTime | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+          <td>{{ history.guestNumber }}</td>
+          <td>{{ history.status }}</td>
+          <td>{{ history.timestamp | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="reservationHistories.length === 0">
+      <p>Keine Reservierungs-Historie vorhanden.</p>
+    </div>
+  </div>
+  
