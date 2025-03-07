@@ -2,8 +2,8 @@
 <div class="customer" *ngIf="customerViewModel">
     <h3>{{ customerViewModel.firstName }} {{ customerViewModel.lastName }}</h3>
     <p *ngIf="customerViewModel.phoneNumber">Your phone number: {{ customerViewModel.phoneNumber }}</p>
-    <p *ngIf="customerViewModel.email">Your email address: {{ customerViewModel.email }}</p>
-    <p *ngIf="customerViewModel.payment">Your payment method: {{ customerViewModel.payment }}</p>
+    <p *ngIf="customerViewModel.username">Your username: {{ customerViewModel.username }}</p>
+    <p *ngIf="customerViewModel.password">Your password: {{ customerViewModel.password }}</p>
     <p *ngIf="customerViewModel.reservations && customerViewModel.reservations.length > 0">Your reservations:</p>
     <table>
         <tbody>

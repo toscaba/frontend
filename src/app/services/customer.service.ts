@@ -6,9 +6,11 @@ export interface Customer {
     id: number;
     firstName: string;
     lastName: string;
-    email: string;
+    username: string;
+    password: string;
     phoneNumber: string;
     reservations: Reservation[];
+    reviews?: Review[];
 }
 
 export interface Reservation {
@@ -20,12 +22,20 @@ export interface Reservation {
   status: string;
 }
 
+export interface Review {
+  id: number;
+  eateryId: number;
+  customerId: number;
+  message: string;
+  rating: number;
+}
+
 export interface CustomerRequest {
     firstName: string;
     lastName: string;
-    email: string;
+    username: string;
+    password: string;
     phoneNumber: string;
-    payment: string;
 }
 
 export interface LoginRequest {

@@ -1,11 +1,13 @@
+import { BusinessDayTimeViewModel } from "./business-day-time";
 
-export interface EateryManager {
+export interface EateryManagerViewModel {
     id: number;
     firstName: string;
     lastName: string;
-    email: string;
-    phoneNumber: string;
+    username: string;
+    password: string;
+    eateryId: number;
     jobTitle: string;
-    workSchedules: string[];
+    workSchedules?: BusinessDayTimeViewModel[];
   }
   

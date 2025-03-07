@@ -25,8 +25,6 @@ export class LoginComponent implements OnInit {
   @Input() firstName: string | undefined;
   @Input() lastName: string | undefined;
   @Input() phoneNumber: string | undefined;
-  @Input() email: string | undefined;
-  @Input() payment: string | undefined;
   @Input() username: string | undefined;
   @Input() password: string | undefined;
 
@@ -53,7 +51,7 @@ export class LoginComponent implements OnInit {
   }
 
   onRegister() {
-    if(!this.firstName || !this.lastName || !this.phoneNumber || !this.email || !this.payment) {
+    if(!this.firstName || !this.lastName || !this.phoneNumber || !this.username || !this.password) {
       alert('Fill in required fields marked with *')
       return;
     }
@@ -61,9 +59,9 @@ export class LoginComponent implements OnInit {
     let customerRequest: CustomerRequest = {
       firstName: this.firstName,
       lastName: this.lastName,
-      email: this.email,
+      username: this.username,
+      password: this.password,
       phoneNumber: this.phoneNumber,
-      payment: this.payment
     };
     
     this.customerService.createCustomer(customerRequest).subscribe(customer => this.authService.updateCustomer(customer));

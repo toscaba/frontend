@@ -39,20 +39,17 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Your email address" [(ngModel)]="email" name="email" required>
-        <mat-error *ngIf="!email || email == ''">Email is required</mat-error>
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Your username" [(ngModel)]="username" name="username" required>
+        <mat-error *ngIf="!username || username == ''">Username is required</mat-error>
       </mat-form-field>
     </div>
 
     <div>
       <mat-form-field>
-        <mat-label>Payment method</mat-label>
-        <mat-select [(ngModel)]="payment" name="payment" required>
-          <mat-option value="CASH">CASH</mat-option>
-          <mat-option value="CREDIT_CARD">CREDIT_CARD</mat-option>
-        </mat-select>
-        <mat-error *ngIf="!payment || payment == ''">Payment method is required</mat-error>
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Your password" [(ngModel)]="password" name="password" required>
+        <mat-error *ngIf="!password || password == ''">Password is required</mat-error>
       </mat-form-field>
       <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="onRegister()" data-testid="register-button">Register</button>
     </div>

@@ -12,7 +12,7 @@ export interface Eatery {
   guestCapacity: number;
   businessDayTimes?: BusinessDayTime[];
   rating: number;
-  reviews: Review[];
+  reviews?: Review[];
 }
 
 export interface EateryRequest {

@@ -1,12 +1,19 @@
 <h1>Manager Profile</h1>
 
-<div class="eatery-manager" *ngIf="manager">
-  <h3>{{ manager.firstName }} {{ manager.lastName }}</h3>
-  <p>Email: {{ manager.email }}</p>
-  <p>Phone: {{ manager.phoneNumber }}</p>
-  <p>Job Title: {{ manager.jobTitle }}</p>
-  <p>Work Schedules:</p>
-  <ul>
-    <li *ngFor="let schedule of manager.workSchedules">{{ schedule }}</li>
-  </ul>
+<div class="eatery-manager" *ngIf="managerViewModel">
+  <h3>{{ managerViewModel.firstName }} {{ managerViewModel.lastName }}</h3>
+  <p *ngIf="managerViewModel.username">Your username: {{ managerViewModel.username }}</p>
+  <p *ngIf="managerViewModel.password">Your password: {{ managerViewModel.password }}</p>
+  <p *ngIf="managerViewModel.jobTitle">Your job title: {{ managerViewModel.jobTitle }}</p>
+  <div class="workSchedules" *ngIf="managerViewModel.workSchedules">
+    <p>Your work schedules:</p>
+    <table>
+        <tbody>
+            <tr class="workSchedule" *ngFor="let schedule of managerViewModel.workSchedules">
+                <td>{{ schedule.day }}</td>
+                <td>{{ schedule.startTime }}-{{ schedule.endTime }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 </div>

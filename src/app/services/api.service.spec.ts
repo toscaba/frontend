@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { CustomerService } from './customer.service';
 import { ReservationService } from './reservation.service';
 import { EateryService } from './eatery.service';
-import { EateryManagerService } from './api.service';
 
 describe('ApiService', () => {
   let eateryservice: EateryService;

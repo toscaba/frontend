@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { CustomerViewModel } from "../model/customer";
+import { Customer } from "./customer.service";
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -9,7 +10,7 @@ export class AuthService {
 
     constructor() { }
 
-    updateCustomer(customer: CustomerViewModel | undefined) {
+    updateCustomer(customer: Customer | undefined) {
         this.customerBehaviorSubject.next(customer);
     }
 }

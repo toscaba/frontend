@@ -11,7 +11,8 @@
             <mat-card>
                 <mat-card-content>
                     <h3>{{ eatery.name }}</h3>
-                    <h4 *ngIf="eatery.rating != 0" class="star-rating">{{ eatery.rating }} star rating</h4>                 
+                    <h4 *ngIf="eatery.rating != 0" class="star-rating">{{ eatery.rating }} star rating</h4>
+                    <p class="review" *ngFor="let review of eatery.reviews">Customer Review: {{ review.message }}</p>                 
                     <img src="../../assets/img/{{eatery.type}}_placeholder.jpg" />
                     <p *ngIf="eatery.type">{{ eatery.type }}</p>
                     <p *ngIf="eatery.address">Address: {{ eatery.address }}</p>
