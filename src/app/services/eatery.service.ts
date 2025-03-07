@@ -11,6 +11,8 @@ export interface Eatery {
   phoneNumber?: string;
   guestCapacity: number;
   businessDayTimes?: BusinessDayTime[];
+  rating: number;
+  reviews: Review[];
 }
 
 export interface EateryRequest {
@@ -24,9 +26,17 @@ export interface EateryRequest {
   }
 
 export interface BusinessDayTime {
-    openDay: string;
-    openTime: string;
-    closeTime: string;
+    day: string;
+    startTime: string;
+    endTime: string;
+}
+
+export interface Review {
+  id: number;
+  eateryId: number;
+  customerId: number;
+  message: string;
+  rating: number;
 }
 
 const eateryUrl: string = 'http://localhost:8080/api/eateries'; // Eatery-URL für das Backend

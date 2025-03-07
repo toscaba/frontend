@@ -11,6 +11,7 @@
             <mat-card>
                 <mat-card-content>
                     <h3>{{ eatery.name }}</h3>
+                    <h4 *ngIf="eatery.rating != 0" class="star-rating">{{ eatery.rating }} star rating</h4>                 
                     <img src="../../assets/img/{{eatery.type}}_placeholder.jpg" />
                     <p *ngIf="eatery.type">{{ eatery.type }}</p>
                     <p *ngIf="eatery.address">Address: {{ eatery.address }}</p>
@@ -22,8 +23,8 @@
                         <table>
                             <tbody>
                                 <tr class="businessDayTime" *ngFor="let businessDayTime of eatery.businessDayTimes">
-                                    <td>{{ businessDayTime.openDay }}</td>
-                                    <td>{{ businessDayTime.openTime }}-{{ businessDayTime.closeTime }}</td>
+                                    <td>{{ businessDayTime.day }}</td>
+                                    <td>{{ businessDayTime.startTime }}-{{ businessDayTime.endTime }}</td>
                                 </tr>
                             </tbody>
                         </table>

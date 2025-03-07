@@ -7,10 +7,20 @@ export interface EateryViewModel {
     phoneNumber?: string;
     businessDayTimes?: BusinessDayTime[];
     guestCapacity: number;
+    rating: number;
+    reviews: Review[];
   }
 
   export interface BusinessDayTime {
-    openDay: string;
-    openTime: string;
-    closeTime: string;
+    day: string;
+    startTime: string;
+    endTime: string;
+  }
+
+  export interface Review {
+    id: number;
+    eateryId: number;
+    customerId: number;
+    message: string;
+    rating: number;
   }

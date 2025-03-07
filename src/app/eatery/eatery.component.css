@@ -40,3 +40,8 @@
     color: gray;
     margin-left: 0;
   }
+
+  .star-rating {
+    display: flex;
+    color: green;
+  }
