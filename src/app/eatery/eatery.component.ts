@@ -9,10 +9,11 @@ import { AuthService } from '../services/auth.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-eatery',
-  imports: [CommonModule, MatDividerModule, MatCardModule],
+  imports: [CommonModule, MatDividerModule, MatCardModule, MatIconModule],
   templateUrl: './eatery.component.html',
   styleUrl: './eatery.component.css'
 })
@@ -40,6 +41,10 @@ export class EateryComponent implements OnInit {
 
   reserve(eateryID: number) {
     this.router.navigateByUrl('/eateries/' + eateryID + '/reservation');
+  }
+
+  review(eateryID: number) {
+    this.router.navigateByUrl('/eateries/' + eateryID + '/review');
   }
 
   serverError(error: HttpErrorResponse) {

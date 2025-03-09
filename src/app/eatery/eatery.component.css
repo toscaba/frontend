@@ -41,10 +41,9 @@
     margin-left: 0;
   }
 
-  .star-rating {
-    display: flex;
-    color: green;
-  }
+  .mat-icon {
+    color: gold;
+  }  
 
   .review {
     color: green;

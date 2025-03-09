@@ -11,8 +11,16 @@
             <mat-card>
                 <mat-card-content>
                     <h3>{{ eatery.name }}</h3>
-                    <h4 *ngIf="eatery.rating != 0" class="star-rating">{{ eatery.rating }} star rating</h4>
-                    <p class="review" *ngFor="let review of eatery.reviews">Customer Review: {{ review.message }}</p>                 
+                    <mat-icon *ngFor="let star of [].constructor(eatery.rating); let i = index">star</mat-icon> 
+                    <p *ngIf="eatery.reviews?.length != 0">Customer Reviews: </p>
+                    <table>
+                        <tbody>
+                            <tr *ngFor="let review of eatery.reviews">
+                                <td class="review">"{{ review.message }}"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p></p>              
                     <img src="../../assets/img/{{eatery.type}}_placeholder.jpg" />
                     <p *ngIf="eatery.type">{{ eatery.type }}</p>
                     <p *ngIf="eatery.address">Address: {{ eatery.address }}</p>
@@ -34,6 +42,11 @@
                     <p></p>
                     <button class="standard-button" type="button" [disabled]="!customer" (click)="reserve(eatery.id)">
                         Make reservation
+                    </button>
+                    <p></p>
+                    <p></p>
+                    <button class="standard-button" type="button" [disabled]="!customer" (click)="review(eatery.id)">
+                        Write a review
                     </button>
                     <p></p>
                 </mat-card-content>
