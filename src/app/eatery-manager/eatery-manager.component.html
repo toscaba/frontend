@@ -19,15 +19,10 @@
 
     <div class="eateries-container">
         <div class="eatery" *ngIf="eateryViewModel">
+            <h1>Your managed eatery</h1>
             <mat-card>
                 <mat-card-content>
                     <h3>{{ eateryViewModel.name }}</h3>
-                    
-                    <mat-form-field>
-                        <mat-label>Type</mat-label>
-                        <input matInput placeholder="Type" [(ngModel)]="type" name="type" required>
-                        <mat-error *ngIf="type == ''">Type is required</mat-error>
-                    </mat-form-field>
 
                     <mat-form-field>
                         <mat-label>Address</mat-label>
@@ -46,6 +41,18 @@
                         <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
                         <mat-error *ngIf="email == ''">Email is required</mat-error>
                     </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Type</mat-label>
+                        <mat-select [(ngModel)]="type" name="type" required>
+                            <mat-option value="RESTAURANT">RESTAURANT</mat-option>
+                            <mat-option value="BAR">BAR</mat-option>
+                            <mat-option value="CAFE">CAFE</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="!type">Type is required</mat-error>
+                    </mat-form-field>
+
+                    <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="onSubmit()">Submit update</button>
             
                     <div class="businessDayTimes" *ngIf="eateryViewModel.businessDayTimes">
                         <p>Opening Hours:</p>

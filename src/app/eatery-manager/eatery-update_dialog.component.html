@@ -1,0 +1,13 @@
+<div *ngIf="data.isSuccess">
+    <h2 mat-dialog-title>Success</h2>
+    <mat-dialog-content>
+        Successfully updated your managed eatery {{data.eatery.name}}!
+    </mat-dialog-content>
+</div>
+
+<div *ngIf="!data.isSuccess">
+    <h2 mat-dialog-title>Failed</h2>
+    <mat-dialog-content>
+       Unable to update your managed eatery {{data.eatery.name}}
+    </mat-dialog-content>
+</div>
