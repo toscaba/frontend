@@ -11,6 +11,7 @@ import {
 } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { EateryManagerViewModel } from '../model/eatery-manager';
 
 @Component({
   selector: 'app-top-bar',
@@ -20,11 +21,14 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class TopBarComponent implements OnInit {
   customer: CustomerViewModel | undefined;
+  manager: EateryManagerViewModel | undefined;
+  
   dialog = inject(MatDialog);
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.authService.currentCustomer.subscribe(customer => this.customer = customer);
+    this.authService.currentManager.subscribe(manager => this.manager = manager);
   }
 
   profile() {
@@ -33,6 +37,7 @@ export class TopBarComponent implements OnInit {
 
   logout() {
     this.authService.updateCustomer(undefined);
+    this.authService.updateManager(undefined);
     this.router.navigateByUrl('/');
     this.dialog.open(Dialog, { data: {} });
   }

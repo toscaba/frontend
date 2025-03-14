@@ -10,6 +10,8 @@ import { AuthService } from '../services/auth.service';
 import { CustomerService, CustomerRequest } from '../services/customer.service';
 import { MatTabsModule, MatTab, MatTabGroup } from '@angular/material/tabs';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent } from '@angular/material/dialog';
+import { EateryManagerService } from '../services/eatery-manager.service';
+import { EateryManagerViewModel } from '../model/eatery-manager';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +21,8 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent } from '@a
 })
 export class LoginComponent implements OnInit {
   private customerViewModel: CustomerViewModel | undefined;
+  private managerViewModel: EateryManagerViewModel | undefined;
+  
   enableLogin: boolean = true;
   dialog = inject(MatDialog);
 
@@ -28,7 +32,7 @@ export class LoginComponent implements OnInit {
   @Input() username: string | undefined;
   @Input() password: string | undefined;
 
-  constructor(private router: Router, private authService: AuthService, private customerService: CustomerService) {}
+  constructor(private router: Router, private authService: AuthService, private customerService: CustomerService, private eateryManagerService: EateryManagerService) {}
 
   ngOnInit(): void {
     this.authService.currentCustomer.subscribe(customer => {
@@ -37,13 +41,29 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/profile/' + this.customerViewModel?.id);
       }
     });
+
+    this.authService.currentManager.subscribe(manager => {
+      this.managerViewModel = manager;
+      if (this.managerViewModel) {
+        this.router.navigateByUrl('/managers/' + this.managerViewModel?.id);
+      }
+    });
   }
 
   onLogin() {
     if (this.enableLogin == true && this.username != undefined && this.password != undefined) {
       this.customerService.login(this.username, this.password).subscribe({
         next: (customer) => { this.authService.updateCustomer(customer); },
-        error: () => { this.dialog.open(Dialog); }
+        error: () => { 
+          if (this.username != undefined && this.password != undefined) {
+            this.eateryManagerService.login(this.username, this.password).subscribe({
+              next: (manager) => { this.authService.updateManager(manager); },
+              error: () => { 
+                this.dialog.open(Dialog); 
+              }
+            }); 
+          }
+        }
       });
     } else if (this.customerViewModel != undefined) {
       this.customerService.getCustomer(this.customerViewModel.id).subscribe(customer => this.authService.updateCustomer(customer));

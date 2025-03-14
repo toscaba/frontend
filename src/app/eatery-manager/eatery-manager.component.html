@@ -1,19 +1,67 @@
 <h1>Manager Profile</h1>
 
 <div class="eatery-manager" *ngIf="managerViewModel">
-  <h3>{{ managerViewModel.firstName }} {{ managerViewModel.lastName }}</h3>
-  <p *ngIf="managerViewModel.username">Your username: {{ managerViewModel.username }}</p>
-  <p *ngIf="managerViewModel.password">Your password: {{ managerViewModel.password }}</p>
-  <p *ngIf="managerViewModel.jobTitle">Your job title: {{ managerViewModel.jobTitle }}</p>
-  <div class="workSchedules" *ngIf="managerViewModel.workSchedules">
-    <p>Your work schedules:</p>
-    <table>
-        <tbody>
-            <tr class="workSchedule" *ngFor="let schedule of managerViewModel.workSchedules">
-                <td>{{ schedule.day }}</td>
-                <td>{{ schedule.startTime }}-{{ schedule.endTime }}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <h3>{{ managerViewModel.firstName }} {{ managerViewModel.lastName }}</h3>
+    <p *ngIf="managerViewModel.username">Your username: {{ managerViewModel.username }}</p>
+    <p *ngIf="managerViewModel.password">Your password: {{ managerViewModel.password }}</p>
+    <p *ngIf="managerViewModel.jobTitle">Your job title: {{ managerViewModel.jobTitle }}</p>
+    <div class="workSchedules" *ngIf="managerViewModel.workSchedules">
+        <p>Your work schedules:</p>
+        <table>
+            <tbody>
+                <tr class="workSchedule" *ngFor="let schedule of managerViewModel.workSchedules">
+                    <td>{{ schedule.day }}</td>
+                    <td>{{ schedule.startTime }}-{{ schedule.endTime }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="eateries-container">
+        <div class="eatery" *ngIf="eateryViewModel">
+            <mat-card>
+                <mat-card-content>
+                    <h3>{{ eateryViewModel.name }}</h3>
+                    
+                    <mat-form-field>
+                        <mat-label>Type</mat-label>
+                        <input matInput placeholder="Type" [(ngModel)]="type" name="type" required>
+                        <mat-error *ngIf="type == ''">Type is required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Address</mat-label>
+                        <input matInput placeholder="Address" [(ngModel)]="address" name="address" required>
+                        <mat-error *ngIf="address == ''">Address is required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Phone Number</mat-label>
+                        <input matInput placeholder="Phone Number" [(ngModel)]="phonenumber" name="phonenumber" required>
+                        <mat-error *ngIf="phonenumber == ''">Phone Number is required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
+                        <mat-error *ngIf="email == ''">Email is required</mat-error>
+                    </mat-form-field>
+            
+                    <div class="businessDayTimes" *ngIf="eateryViewModel.businessDayTimes">
+                        <p>Opening Hours:</p>
+                        <table>
+                            <tbody>
+                                <tr class="businessDayTime" *ngFor="let businessDayTime of eateryViewModel.businessDayTimes">
+                                    <td>{{ businessDayTime.day }}</td>
+                                    <td>{{ businessDayTime.startTime }}-{{ businessDayTime.endTime }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
 </div>

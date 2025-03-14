@@ -38,12 +38,12 @@ export class EateryManagerService {
 
   // Get all managers
   getManagers() {
-    return this.http.get<EateryManager[]>(`${eateryManagerUrl}managers`);
+    return this.http.get<EateryManager[]>(`${eateryManagerUrl}`);
   }
 
   // Get manager by ID
   getManager(id: number) {
-    return this.http.get<EateryManager>(`${eateryManagerUrl}managers/${id}`);
+    return this.http.get<EateryManager>(`${eateryManagerUrl}/${id}`);
   }
 
   // Create new manager

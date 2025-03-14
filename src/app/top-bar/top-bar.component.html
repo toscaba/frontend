@@ -10,11 +10,11 @@
     Account
 </a>
 
-<a *ngIf="!customer" routerLink="/login" class="button fancy-button">
+<a *ngIf="!customer && !manager" routerLink="/login" class="button fancy-button">
     <em class="material-icons">login</em>
     Login
 </a>
-<a *ngIf="customer" class="button fancy-button" (click)="logout()">
+<a *ngIf="customer || manager" class="button fancy-button" (click)="logout()">
     <em class="material-icons">logout</em>
     Logout
 </a>
