@@ -6,6 +6,12 @@
     <h1>Explore Current Eateries
         <mat-divider></mat-divider>
     </h1>
+
+    <mat-chip-listbox aria-label="Filter selection">
+        <mat-chip-option *ngFor="let chip of chips; let i = index" [selected]="chip.selected" 
+        (click)="toggleSelection(i); filter(chip.name)">{{ chip.name }}</mat-chip-option>
+    </mat-chip-listbox>
+
     <div class="eateries-container">
         <div class="eatery" *ngFor="let eatery of eateries">
             <mat-card>

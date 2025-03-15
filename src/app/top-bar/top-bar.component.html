@@ -3,13 +3,15 @@
     <h1>Eatery WebApp</h1>
 </a>
 
-<label *ngIf="customer" routerLink="/profile/{{ customer.id }}">{{customer.firstName}} {{customer.lastName}}</label>
-
-<label *ngIf="manager" routerLink="/managers/{{ manager.id }}">{{manager.firstName}} {{manager.lastName}}</label>
-
+<div>
 <a *ngIf="customer" class="button fancy-button" (click)="profile()">
     <em class="material-icons">person</em>
-    Account
+    {{customer.firstName}} {{customer.lastName}}
+</a>
+
+<a *ngIf="manager" class="button fancy-button" (click)="managerProfile()">
+    <em class="material-icons">person</em>
+    {{manager.firstName}} {{manager.lastName}}
 </a>
 
 <a *ngIf="!customer && !manager" routerLink="/login" class="button fancy-button">
@@ -20,3 +22,4 @@
     <em class="material-icons">logout</em>
     Logout
 </a>
+</div>

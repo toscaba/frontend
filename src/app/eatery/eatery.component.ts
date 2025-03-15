@@ -10,10 +10,11 @@ import { MatDividerModule } from '@angular/material/divider';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import {MatChipsModule} from '@angular/material/chips';
 
 @Component({
   selector: 'app-eatery',
-  imports: [CommonModule, MatDividerModule, MatCardModule, MatIconModule],
+  imports: [CommonModule, MatDividerModule, MatCardModule, MatIconModule, MatChipsModule],
   templateUrl: './eatery.component.html',
   styleUrl: './eatery.component.css'
 })
@@ -22,6 +23,12 @@ export class EateryComponent implements OnInit {
   isServerRunning: boolean = false;
   customer: CustomerViewModel | undefined;
   eateries: EateryViewModel[] | undefined;
+
+  chips = [
+    { name: 'Restaurant', selected: false },
+    { name: 'Bar', selected: false },
+    { name: 'Cafe', selected: false }
+  ];
 
   constructor(
     private router: Router,
@@ -37,6 +44,19 @@ export class EateryComponent implements OnInit {
       next: eateries => this.eateries = eateries,
       error: e => this.serverError(e)
     });
+  }
+
+  toggleSelection(index: number): void {
+    const chip = this.chips[index];
+    // Toggle the 'selected' state of a chip
+    chip.selected = !chip.selected;
+    if(chip.selected == false) {
+      this.eateryService?.getEateries().subscribe(eateries => this.eateries = eateries)
+    }
+  }
+
+  filter(eateryType: string) {
+    this.eateryService.search(eateryType).subscribe(eateries => this.eateries = eateries)
   }
 
   reserve(eateryID: number) {

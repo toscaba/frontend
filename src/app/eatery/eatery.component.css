@@ -43,8 +43,19 @@
 
   .mat-icon {
     color: gold;
-  }  
+  }
 
   .review {
     color: green;
+  }
+
+  .mat-mdc-chip-listbox {
+    margin-left: 67px; 
+    margin-top: 20px;
+    margin-bottom: 40px;
+
+    .mat-mdc-chip-option {
+      background-color: #9899EA;
+      color: white;
+    }
   }

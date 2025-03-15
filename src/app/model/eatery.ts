@@ -1,4 +1,3 @@
-import { Review } from "../services/eatery.service";
 import { BusinessDayTimeViewModel } from "./business-day-time";
 import { ReviewViewModel } from "./review";
 

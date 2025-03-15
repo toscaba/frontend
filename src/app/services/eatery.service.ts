@@ -57,6 +57,10 @@ export class EateryService {
     return this.http.get<Eatery>(`${eateryUrl}/${id}`);
   }
 
+  search(type: string): Observable<Eatery[]> {
+    return this.http.get<Eatery[]>(`${eateryUrl}/search?type=${type}`)
+  }
+
   // Create new eatery
   createEatery(eatery: EateryRequest): Observable<Eatery> {
     return this.http.post<Eatery>(`${eateryUrl}`, eatery);

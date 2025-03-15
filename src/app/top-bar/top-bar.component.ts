@@ -22,8 +22,8 @@ import { EateryManagerViewModel } from '../model/eatery-manager';
 export class TopBarComponent implements OnInit {
   customer: CustomerViewModel | undefined;
   manager: EateryManagerViewModel | undefined;
-  
   dialog = inject(MatDialog);
+  
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -33,6 +33,10 @@ export class TopBarComponent implements OnInit {
 
   profile() {
     this.router.navigateByUrl('/profile/' + this.customer?.id);
+  }
+
+  managerProfile() {
+    this.router.navigateByUrl('/managers/' + this.manager?.id)
   }
 
   logout() {
