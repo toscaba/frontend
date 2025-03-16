@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service';
 import { CustomerService, CustomerRequest } from '../services/customer.service';
 import { MatTabsModule, MatTab, MatTabGroup } from '@angular/material/tabs';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent } from '@angular/material/dialog';
-import { EateryManagerService } from '../services/eatery-manager.service';
+import { EateryManagerService, ManagerRequest } from '../services/eatery-manager.service';
 import { EateryManagerViewModel } from '../model/eatery-manager';
 
 @Component({
@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
   @Input() phoneNumber: string | undefined;
   @Input() username: string | undefined;
   @Input() password: string | undefined;
+  @Input() role: string | undefined;
+  @Input() jobTitle: string | undefined;
 
   constructor(private router: Router, private authService: AuthService, private customerService: CustomerService, private eateryManagerService: EateryManagerService) {}
 
@@ -71,20 +73,36 @@ export class LoginComponent implements OnInit {
   }
 
   onRegister() {
-    if(!this.firstName || !this.lastName || !this.phoneNumber || !this.username || !this.password) {
+    if(!this.firstName || !this.lastName || !this.phoneNumber || !this.username || !this.password || !this.role) {
       alert('Fill in required fields marked with *')
       return;
     }
 
-    let customerRequest: CustomerRequest = {
-      firstName: this.firstName,
-      lastName: this.lastName,
-      username: this.username,
-      password: this.password,
-      phoneNumber: this.phoneNumber,
-    };
-    
-    this.customerService.createCustomer(customerRequest).subscribe(customer => this.authService.updateCustomer(customer));
+    if(this.role === 'CUSTOMER') {
+      let customerRequest: CustomerRequest = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        username: this.username,
+        password: this.password,
+        phoneNumber: this.phoneNumber,
+      };
+      
+      this.customerService.createCustomer(customerRequest).subscribe(customer => this.authService.updateCustomer(customer));
+    }
+
+    if(this.role === 'MANAGER') {
+      let managerRequest: ManagerRequest = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        username: this.username,
+        password: this.password,
+        eateryId: 0,
+        jobTitle: this.jobTitle ?? "",
+        workSchedules: []
+      };
+
+      this.eateryManagerService.createManager(managerRequest).subscribe(manager => this.authService.updateManager(manager));
+    }
   }
 }
 

@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
+import { BusinessDayTimeViewModel } from '../model/business-day-time';
 
 @Component({
   selector: 'app-eatery-manager',
@@ -26,10 +27,20 @@ export class EateryManagerComponent implements OnInit {
   eateryViewModel: EateryViewModel | undefined;
   dialog = inject(MatDialog);
 
+  // inputs for updating existing eatery
   @Input() type: string | undefined;
   @Input() address: string | undefined;
   @Input() phonenumber: string | undefined;
   @Input() email: string | undefined;
+
+  // inputs for adding new eatery
+  @Input() eateryName: string | undefined;
+  @Input() eateryType: string | undefined;
+  @Input() eateryAddress: string | undefined;
+  @Input() eateryPhoneNumber: string | undefined;
+  @Input() eateryEmail: string | undefined;
+  @Input() guestCapacity: number | undefined;
+  @Input() businessDayTimes: BusinessDayTimeViewModel[] | undefined 
 
   constructor(private route: ActivatedRoute,
     private eateryManagerService: EateryManagerService,
@@ -39,13 +50,15 @@ export class EateryManagerComponent implements OnInit {
     const managerIdFromRoute = Number(this.route.snapshot.paramMap.get('id'));
     this.eateryManagerService?.getManager(managerIdFromRoute).subscribe(manager => {
       this.managerViewModel = manager;
-      this.eateryService.getEatery(this.managerViewModel.eateryId).subscribe(eatery => {
-        this.eateryViewModel = eatery;
-        this.type = eatery.type;
-        this.address = eatery.address;
-        this.phonenumber = eatery.phoneNumber;
-        this.email = eatery.email;
-      });
+      if(this.managerViewModel.eateryId != 0) {
+        this.eateryService.getEatery(this.managerViewModel.eateryId).subscribe(eatery => {
+          this.eateryViewModel = eatery;
+          this.type = eatery.type;
+          this.address = eatery.address;
+          this.phonenumber = eatery.phoneNumber;
+          this.email = eatery.email;
+        });
+      }
     });
   }
 
@@ -63,14 +76,39 @@ export class EateryManagerComponent implements OnInit {
       phoneNumber: this.phonenumber,
       guestCapacity: this.eateryViewModel?.guestCapacity ?? 0,
       businessDayTimes: this.eateryViewModel?.businessDayTimes
-    }
+    };
 
-    if (!this.managerViewModel) {
+    if (!this.eateryViewModel) {
       alert('Your managed eatery is not found')
       return;
     }
-    this.eateryService.updateEatery(this.managerViewModel.eateryId, eateryRequest).subscribe({
+
+    this.eateryService.updateEatery(this.eateryViewModel.id, eateryRequest).subscribe({
       next: (updatedEatery) => this.success(updatedEatery),
+      error: (e) => this.fail(e)
+    })
+  }
+
+  onAdd() {
+    if(!this.eateryName || !this.eateryType || !this.eateryAddress || !this.eateryPhoneNumber || !this.eateryEmail || !this.guestCapacity) {
+      alert('Fill in required fields marked with *')
+      return;
+    }
+
+    let eateryRequest: EateryRequest = {
+      type: this.eateryType,
+      name: this.eateryName,
+      address: this.eateryAddress,
+      email: this.eateryEmail,
+      phoneNumber: this.eateryPhoneNumber,
+      guestCapacity: this.guestCapacity ?? 0,
+      businessDayTimes: this.businessDayTimes ?? []
+    };
+
+    this.eateryService.createEatery(eateryRequest).subscribe({
+      next: (createdEatery) => {
+        this.success(createdEatery)
+      },
       error: (e) => this.fail(e)
     })
   }

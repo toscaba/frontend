@@ -25,9 +25,9 @@ export class EateryComponent implements OnInit {
   eateries: EateryViewModel[] | undefined;
 
   chips = [
-    { name: 'Restaurant', selected: false },
-    { name: 'Bar', selected: false },
-    { name: 'Cafe', selected: false }
+    { name: 'Restaurant', selected: false, disabled: false },
+    { name: 'Bar', selected: false, disabled: false },
+    { name: 'Cafe', selected: false, disabled: false }
   ];
 
   constructor(
@@ -46,17 +46,32 @@ export class EateryComponent implements OnInit {
     });
   }
 
-  toggleSelection(index: number): void {
+  filter(index: number): void {
     const chip = this.chips[index];
     // Toggle the 'selected' state of a chip
     chip.selected = !chip.selected;
+
+    if(chip.selected == true) {
+      // Search eateries by chip name
+      this.eateryService.search(chip.name).subscribe(eateries => this.eateries = eateries)
+
+      // Disable all other chips except the clicked one
+      this.chips = this.chips.map((chip, i) => ({
+        ...chip,
+        disabled: i !== index
+      }));
+    }
+
     if(chip.selected == false) {
       this.eateryService?.getEateries().subscribe(eateries => this.eateries = eateries)
-    }
-  }
 
-  filter(eateryType: string) {
-    this.eateryService.search(eateryType).subscribe(eateries => this.eateries = eateries)
+      // Enable all chips
+      this.chips = this.chips.map((chip, i) => ({
+        ...chip,
+        disabled: false
+      }));
+    }
+
   }
 
   reserve(eateryID: number) {

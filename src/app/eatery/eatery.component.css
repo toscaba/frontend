@@ -58,4 +58,9 @@
       background-color: #9899EA;
       color: white;
     }
+
+    .disabled-chip {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
   }

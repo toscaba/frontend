@@ -9,7 +9,8 @@
 
     <mat-chip-listbox aria-label="Filter selection">
         <mat-chip-option *ngFor="let chip of chips; let i = index" [selected]="chip.selected" 
-        (click)="toggleSelection(i); filter(chip.name)">{{ chip.name }}</mat-chip-option>
+        [disabled]="chip.disabled" [ngClass]="{'disabled-chip': chip.disabled}"
+        (click)="filter(i)">{{ chip.name }}</mat-chip-option>
     </mat-chip-listbox>
 
     <div class="eateries-container">
@@ -18,7 +19,7 @@
                 <mat-card-content>
                     <h3>{{ eatery.name }}</h3>
                     <mat-icon *ngFor="let star of [].constructor(eatery.rating); let i = index">star</mat-icon> 
-                    <p *ngIf="eatery.reviews?.length != 0">Customer Reviews: </p>
+                    <p *ngIf="eatery.reviews?.length != 0">Guest Reviews: </p>
                     <table>
                         <tbody>
                             <tr *ngFor="let review of eatery.reviews">
