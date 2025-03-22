@@ -55,6 +55,10 @@ export class CustomerComponent implements OnInit {
     this.authService.currentCustomer.subscribe(customer => this.customerViewModel = customer);
   }
 
+  updateCustomer(customerId: number) {
+    this.router.navigateByUrl('/profile/' + customerId + '/edit')
+  }
+
   cancelReservation(reservationId: number) {
     if (reservationId == null) {
       return;

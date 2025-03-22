@@ -1,5 +1,5 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { EateryManagerService } from '../services/eatery-manager.service';
 import { EateryManagerViewModel } from '../model/eatery-manager'
@@ -45,6 +45,7 @@ export class EateryManagerComponent implements OnInit {
   @Input() businessDayTimes: BusinessDayTimeViewModel[] | undefined 
 
   constructor(private route: ActivatedRoute,
+    private router: Router,
     private eateryManagerService: EateryManagerService,
     private eateryService: EateryService) { }
 
@@ -63,6 +64,10 @@ export class EateryManagerComponent implements OnInit {
         });
       }
     });
+  }
+
+  updateManager(managerId: number) {
+    this.router.navigateByUrl('/managers/' + managerId + '/edit')
   }
 
   onSubmit() {

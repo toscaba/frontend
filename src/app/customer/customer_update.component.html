@@ -1,0 +1,36 @@
+<div>
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input matInput placeholder="Your first name" [(ngModel)]="firstName" name="firstname" required>
+      <mat-error *ngIf="!firstName || firstName == ''">First name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input matInput placeholder="Your last name" [(ngModel)]="lastName" name="lastname" required>
+      <mat-error *ngIf="!lastName || lastName == ''">Last name is required</mat-error>
+    </mat-form-field>
+</div>
+
+<div>
+    <mat-form-field>
+      <mat-label>Phone Number</mat-label>
+      <input matInput placeholder="Your phone number" [(ngModel)]="phoneNumber" name="phonenumber" required>
+      <mat-error *ngIf="!phoneNumber || phoneNumber == ''">Phone number is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="Your username" [(ngModel)]="username" name="username" required>
+      <mat-error *ngIf="!username || username == ''">Username is required</mat-error>
+    </mat-form-field>
+</div>
+
+<div>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="Your password" [(ngModel)]="password" name="password" required>
+      <mat-error *ngIf="!password || password == ''">Password is required</mat-error>
+    </mat-form-field>
+    <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="onUpdate()" data-testid="update-button">Update profile</button>
+</div>

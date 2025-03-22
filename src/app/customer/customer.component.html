@@ -4,7 +4,8 @@
     <p *ngIf="customerViewModel.phoneNumber">Your phone number: {{ customerViewModel.phoneNumber }}</p>
     <p *ngIf="customerViewModel.username">Your username: {{ customerViewModel.username }}</p>
     <p *ngIf="customerViewModel.password">Your password: {{ customerViewModel.password }}</p>
-    <p *ngIf="customerViewModel.reservations && customerViewModel.reservations.length > 0">Your reservations:</p>
+    <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="updateCustomer(customerViewModel.id)">Update profile</button>
+    <h1 *ngIf="customerViewModel.reservations && customerViewModel.reservations.length > 0">Your reservations:</h1>
     <table>
         <tbody>
             <tr class="reservation" *ngFor="let reservation of customerViewModel.reservations">
