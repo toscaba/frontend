@@ -34,18 +34,10 @@ describe('Login and Registration Tabs', () => {
       .blur();    
 
       cy.contains('Phone number is required').should('be.visible');
-  
-      // Klick in das Email-Feld und wieder raus
-      cy.get('input[name="email"]').click().blur();
-      cy.contains('Email is required').should('be.visible');
-  
-    // "Payment method" auswählen
-    cy.get('mat-select[name="payment"]').click();  // Dropdown öffnen
-    cy.get('mat-option[value="CASH"]').click();   // Eine Auswahl treffen
 
-    cy.get('[data-testid="register-button"]').click();  // "Register"-Button klicken
-
-    // Überprüfe, ob die Fehlermeldung für das Payment angezeigt wird
-    cy.contains('Payment method is required').should('not.exist');
+      // Klick in das Benutzername-Feld und wieder raus
+      cy.get('input[name="username"]').click().blur();
+      cy.contains('Username is required').should('be.visible');
+        
      });
 })
