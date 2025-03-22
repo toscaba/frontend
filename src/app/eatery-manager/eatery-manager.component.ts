@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { EateryManagerService } from '../services/eatery-manager.service';
 import { EateryManagerViewModel } from '../model/eatery-manager'
-import { EateryRequest, EateryService } from '../services/eatery.service';
+import { CreateEateryRequest, EateryService, UpdateEateryRequest } from '../services/eatery.service';
 import { EateryViewModel } from '../model/eatery';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -26,6 +26,8 @@ export class EateryManagerComponent implements OnInit {
   managerViewModel: EateryManagerViewModel | undefined;
   eateryViewModel: EateryViewModel | undefined;
   dialog = inject(MatDialog);
+
+  eateryAdded: boolean | undefined = false;
 
   // inputs for updating existing eatery
   @Input() type: string | undefined;
@@ -57,6 +59,7 @@ export class EateryManagerComponent implements OnInit {
           this.address = eatery.address;
           this.phonenumber = eatery.phoneNumber;
           this.email = eatery.email;
+          this.eateryAdded = true;
         });
       }
     });
@@ -68,7 +71,7 @@ export class EateryManagerComponent implements OnInit {
       return;
     }
 
-    let eateryRequest: EateryRequest = {
+    let eateryRequest: UpdateEateryRequest = {
       type: this.type,
       name: this.eateryViewModel?.name ?? "",
       address: this.address,
@@ -95,19 +98,21 @@ export class EateryManagerComponent implements OnInit {
       return;
     }
 
-    let eateryRequest: EateryRequest = {
+    let eateryRequest: CreateEateryRequest = {
       type: this.eateryType,
       name: this.eateryName,
       address: this.eateryAddress,
       email: this.eateryEmail,
       phoneNumber: this.eateryPhoneNumber,
       guestCapacity: this.guestCapacity ?? 0,
-      businessDayTimes: this.businessDayTimes ?? []
+      businessDayTimes: this.businessDayTimes ?? [],
+      managerId: this.managerViewModel?.id ?? 0
     };
 
     this.eateryService.createEatery(eateryRequest).subscribe({
       next: (createdEatery) => {
         this.success(createdEatery)
+        this.eateryAdded = true;
       },
       error: (e) => this.fail(e)
     })

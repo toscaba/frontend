@@ -70,58 +70,59 @@
                 </mat-card-content>
             </mat-card>
         </div>
-        <div class="eatery-add" *ngIf="!eateryViewModel"></div>
-        <h1>Add your eatery</h1>
-        <mat-card>
-            <mat-card-content>
-                <div>
-                    <mat-form-field>
-                        <mat-label>Name</mat-label>
-                        <input matInput placeholder="Name" [(ngModel)]="eateryName" name="eateryName" required>
-                        <mat-error *ngIf="eateryName == ''">Eatery name is required</mat-error>
-                    </mat-form-field>
-
-                    <mat-form-field>
-                        <mat-label>Address</mat-label>
-                        <input matInput placeholder="Address" [(ngModel)]="eateryAddress" name="eateryAddress" required>
-                        <mat-error *ngIf="eateryAddress == ''">Address is required</mat-error>
-                    </mat-form-field>
+        <div class="eatery-add" *ngIf="!eateryAdded">
+            <h1>Add your eatery</h1>
+            <mat-card>
+                <mat-card-content>
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Name</mat-label>
+                            <input matInput placeholder="Name" [(ngModel)]="eateryName" name="eateryName" required>
+                            <mat-error *ngIf="eateryName == ''">Eatery name is required</mat-error>
+                        </mat-form-field>
     
-                    <mat-form-field>
-                        <mat-label>Type</mat-label>
-                        <mat-select [(ngModel)]="eateryType" name="eateryType" required>
-                            <mat-option value="RESTAURANT">RESTAURANT</mat-option>
-                            <mat-option value="BAR">BAR</mat-option>
-                            <mat-option value="CAFE">CAFE</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf="!eateryType">Type is required</mat-error>
-                    </mat-form-field>
-                </div>
-
-                <div>
-                    <mat-form-field>
-                        <mat-label>Phone Number</mat-label>
-                        <input matInput placeholder="Phone Number" [(ngModel)]="eateryPhoneNumber" name="eateryPhoneNumber" required>
-                        <mat-error *ngIf="eateryPhoneNumber == ''">Phone number is required</mat-error>
-                    </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Address</mat-label>
+                            <input matInput placeholder="Address" [(ngModel)]="eateryAddress" name="eateryAddress" required>
+                            <mat-error *ngIf="eateryAddress == ''">Address is required</mat-error>
+                        </mat-form-field>
+        
+                        <mat-form-field>
+                            <mat-label>Type</mat-label>
+                            <mat-select [(ngModel)]="eateryType" name="eateryType" required>
+                                <mat-option value="RESTAURANT">RESTAURANT</mat-option>
+                                <mat-option value="BAR">BAR</mat-option>
+                                <mat-option value="CAFE">CAFE</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="!eateryType">Type is required</mat-error>
+                        </mat-form-field>
+                    </div>
     
-                    <mat-form-field>
-                        <mat-label>Email</mat-label>
-                        <input matInput placeholder="Email" [(ngModel)]="eateryEmail" name="eateryEmail" required>
-                        <mat-error *ngIf="eateryEmail == ''">Email is required</mat-error>
-                    </mat-form-field>
-                </div>
-
-                <div>
-                    <mat-form-field>
-                        <mat-label>Guest Capacity</mat-label>
-                        <input matInput placeholder="Guest capacity" [(ngModel)]="guestCapacity" name="guestCapacity" required>
-                        <mat-error *ngIf="guestCapacity == 0">Guest capacity is required</mat-error>
-                    </mat-form-field>
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Phone Number</mat-label>
+                            <input matInput placeholder="Phone Number" [(ngModel)]="eateryPhoneNumber" name="eateryPhoneNumber" required>
+                            <mat-error *ngIf="eateryPhoneNumber == ''">Phone number is required</mat-error>
+                        </mat-form-field>
+        
+                        <mat-form-field>
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="Email" [(ngModel)]="eateryEmail" name="eateryEmail" required>
+                            <mat-error *ngIf="eateryEmail == ''">Email is required</mat-error>
+                        </mat-form-field>
+                    </div>
     
-                    <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="onAdd()">Add eatery</button>
-                </div>
-            </mat-card-content>
-        </mat-card>
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Guest Capacity</mat-label>
+                            <input matInput placeholder="Guest capacity" [(ngModel)]="guestCapacity" name="guestCapacity" required>
+                            <mat-error *ngIf="guestCapacity == 0">Guest capacity is required</mat-error>
+                        </mat-form-field>
+        
+                        <button class="standard-button" mat-raised-button color="primary" type="submit" (click)="onAdd()">Add eatery</button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
 </div>

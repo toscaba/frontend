@@ -15,7 +15,18 @@ export interface Eatery {
   reviews?: Review[];
 }
 
-export interface EateryRequest {
+export interface CreateEateryRequest {
+  type: string;
+  name: string;
+  address: string;
+  email?: string;
+  phoneNumber?: string;
+  guestCapacity: number;
+  businessDayTimes?: BusinessDayTime[];
+  managerId: number;
+}
+
+export interface UpdateEateryRequest {
     type: string;
     name: string;
     address: string;
@@ -62,12 +73,12 @@ export class EateryService {
   }
 
   // Create new eatery
-  createEatery(eatery: EateryRequest): Observable<Eatery> {
+  createEatery(eatery: CreateEateryRequest): Observable<Eatery> {
     return this.http.post<Eatery>(`${eateryUrl}`, eatery);
   }
 
   // Update existing eatery
-  updateEatery(id: number, eatery: EateryRequest): Observable<Eatery> {
+  updateEatery(id: number, eatery: UpdateEateryRequest): Observable<Eatery> {
     return this.http.put<Eatery>(`${eateryUrl}/${id}`, eatery);
   }
 
