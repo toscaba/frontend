@@ -1,15 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { MatCardModule } from "@angular/material/card";
-import { MatDividerModule } from "@angular/material/divider";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { EateryManagerViewModel } from "../model/eatery-manager";
 import { EateryManagerService, ManagerRequest } from "../services/eatery-manager.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { UpdateEateryRequest } from "../services/eatery.service";
 
 @Component({
   selector: 'app-eatery-manager',

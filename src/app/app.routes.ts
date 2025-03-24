@@ -8,6 +8,7 @@ import { EateryManagerComponent } from './eatery-manager/eatery-manager.componen
 import { ReviewComponent } from './review/review.component';
 import { CustomerUpdateComponent } from './customer/customer-update.component';
 import { EateryManagerUpdateComponent } from './eatery-manager/eatery-manager_update.component';
+import { ReservationHistoryComponent } from './reservation-history/reservation-history.component';
 
 
 export const routes: Routes = [
@@ -20,5 +21,6 @@ export const routes: Routes = [
         { path: 'profile/:customerId/edit', component: CustomerUpdateComponent},
         { path: 'managers/:id', component: EateryManagerComponent },
         { path: 'managers/:managerId/edit', component: EateryManagerUpdateComponent },
+        { path: 'managers/:managerId/reservation/history/:eateryId', component: ReservationHistoryComponent },
         { path: 'reservations/:reservationId', component: ReservationUpdateComponent }
 ];

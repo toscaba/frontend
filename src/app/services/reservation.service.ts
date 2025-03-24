@@ -11,6 +11,16 @@ export interface Reservation {
     status: string;
   }
 
+  export interface ReservationHistory {
+    reservationId: number;
+    customerId: number;
+    eateryId: number;
+    guestNumber: number;
+    reservationDateTime: string;
+    status: string;
+    timestamp: string;
+  }
+
   export interface CreateReservationRequest {
     customerId: number;
     eateryId: number;
@@ -32,13 +42,13 @@ export interface Reservation {
     constructor(private http: HttpClient) { }
   
     // Get reservation by id
-    getReservation(id: number) {
+    getReservation(id: number): Observable<Reservation> {
       return this.http.get<Reservation>(`${reservationUrl}/${id}`);
     }
   
     // Get all reservations
-    getReservations() {
-      return this.http.get<Reservation>(`${reservationUrl}`);
+    getReservations(): Observable<Reservation[]> {
+      return this.http.get<Reservation[]>(`${reservationUrl}`);
     }
   
     // Create new reservation
@@ -54,5 +64,15 @@ export interface Reservation {
     // Cancel existing reservation
     cancelReservation(id: number): Observable<Reservation> {
       return this.http.put<Reservation>(`${reservationUrl}/${id}/cancel`,{});
+    }
+
+    // Delete exisiting reservation
+    deleteReservation(id: number) {
+      return this.http.delete<Reservation>(`${reservationUrl}/${id}`);
+    }
+
+    // Get reservation history
+    getHistory(eateryId: number): Observable<ReservationHistory[]> {
+      return this.http.get<ReservationHistory[]>(`${reservationUrl}/history?eateryId=${eateryId}`);
     }
   }

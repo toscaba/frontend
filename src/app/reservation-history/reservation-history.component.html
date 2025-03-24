@@ -1,0 +1,22 @@
+<h1>Reservation History</h1>
+<div class="history" *ngIf="historyViewModels">
+    <h3 *ngIf="historyViewModels && historyViewModels.length > 0">All reservations:</h3>
+    <table>
+        <tbody>
+            <tr class="reservation" *ngFor="let reservation of historyViewModels">
+                <td>Customer {{ reservation.customerName }}</td>
+                <td>{{ reservation.status }}</td>
+                <td>at {{ reservation.eateryName }}</td>
+                <td>on {{ reservation.reservationDateTime }}</td>
+                <td>for {{ reservation.guestNumber }} persons</td>
+                <td>created at {{reservation.timestamp}} </td>
+                <td>
+                    <button class="standard-button" 
+                    *ngIf="reservation.status == 'CANCELLED' || reservation.status == 'COMPLETED' || reservation.status == 'ABSENT'" 
+                    mat-raised-button color="primary" type="submit" (click)="deleteReservation(reservation.reservationId, reservation.eateryId)">
+                    Delete reservation</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

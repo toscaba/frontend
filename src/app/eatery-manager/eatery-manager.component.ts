@@ -67,12 +67,12 @@ export class EateryManagerComponent implements OnInit {
   }
 
   updateManager(managerId: number) {
-    this.router.navigateByUrl('/managers/' + managerId + '/edit')
+    this.router.navigateByUrl('/managers/' + managerId + '/edit');
   }
 
   onSubmit() {
     if(this.managerViewModel?.eateryId === 0 || !this.type || !this.address || !this.phonenumber || !this.email) {
-      alert('Fill in required fields marked with *')
+      alert('Fill in required fields marked with *');
       return;
     }
 
@@ -121,6 +121,10 @@ export class EateryManagerComponent implements OnInit {
       },
       error: (e) => this.fail(e)
     })
+  }
+
+  openHistory(managerId: number, eateryId: number) {
+    this.router.navigateByUrl('/managers/' + managerId + '/reservation/history/' + eateryId);
   }
 
   success(updatedEatery: EateryViewModel) {
