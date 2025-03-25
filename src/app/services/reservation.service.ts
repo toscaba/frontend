@@ -61,6 +61,15 @@ export interface Reservation {
         return this.http.put<Reservation>(`${reservationUrl}/${id}`, reservationRequest);
     }
 
+    // Set existing reservation as completed
+    completeReservation(id: number): Observable<Reservation> {
+      return this.http.put<Reservation>(`${reservationUrl}/${id}/complete`,{});
+    }
+
+    absentReservation(id: number): Observable<Reservation> {
+      return this.http.put<Reservation>(`${reservationUrl}/${id}/absent`,{});
+    }
+
     // Cancel existing reservation
     cancelReservation(id: number): Observable<Reservation> {
       return this.http.put<Reservation>(`${reservationUrl}/${id}/cancel`,{});
